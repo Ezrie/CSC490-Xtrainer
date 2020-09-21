@@ -1,4 +1,4 @@
-package code.main.ui.notifications;
+package code.main.ui.settings;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,16 +15,16 @@ import androidx.lifecycle.ViewModelProviders;
 import code.main.R;
 import code.main.ui.WorkoutViewModel;
 
-public class NotificationsFragment extends Fragment {
+public class SettingsFragment extends Fragment {
 
     private WorkoutViewModel workoutViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         workoutViewModel = ViewModelProviders.of(this).get(WorkoutViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_notifications, container, false);
-        final TextView textView = root.findViewById(R.id.text_notifications);
+        View root = inflater.inflate(R.layout.fragment_settings, container, false);
+        final TextView textView = root.findViewById(R.id.text_settings);
 
-        textView.setText("Notifications here");
+        textView.setText("Settings here");
 
         workoutViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

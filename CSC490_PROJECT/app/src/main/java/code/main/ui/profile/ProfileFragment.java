@@ -1,7 +1,6 @@
-package code.main.ui.dashboard;
+package code.main.ui.profile;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,22 +15,18 @@ import androidx.lifecycle.ViewModelProviders;
 import code.main.R;
 import code.main.ui.WorkoutViewModel;
 
-public class DashboardFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
     private WorkoutViewModel workoutViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //Finds View and it's layout
         workoutViewModel = ViewModelProviders.of(this).get(WorkoutViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        //Finds the text container
-        final TextView textView = root.findViewById(R.id.text_dashboard);
+        View root = inflater.inflate(R.layout.fragment_profile, container, false);
+        final TextView textView = root.findViewById(R.id.text_profile);
 
-        //Default text
-        textView.setText("Dashboard here");
+        textView.setText("Profile here");
 
-        //Updates View if text is changed
-        workoutViewModel.getCurrentTab().observe(getViewLifecycleOwner(), new Observer<String>() {
+        workoutViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

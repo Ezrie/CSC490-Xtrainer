@@ -1,4 +1,4 @@
-package code.main.ui.home;
+package code.main.ui.workouts;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,17 +15,21 @@ import androidx.lifecycle.ViewModelProviders;
 import code.main.R;
 import code.main.ui.WorkoutViewModel;
 
-public class HomeFragment extends Fragment {
+public class WorkoutsFragment extends Fragment {
 
     private WorkoutViewModel workoutViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        //Finds View and it's layout
         workoutViewModel = ViewModelProviders.of(this).get(WorkoutViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
+        View root = inflater.inflate(R.layout.fragment_workouts, container, false);
+        //Finds the text container
+        final TextView textView = root.findViewById(R.id.text_workouts);
 
-        textView.setText("Home here");
+        //Default text
+        textView.setText("Workouts here");
 
+        //Updates View if text is changed
         workoutViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
