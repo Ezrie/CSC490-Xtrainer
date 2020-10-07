@@ -1,19 +1,17 @@
-package code.main.ui;
+package code.main.ui.workouts;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import code.main.WorkoutActivity;
-
-public class WorkoutViewModel extends ViewModel{
+public class WorkoutView extends ViewModel {
 
     //When MutableLiveData calls setValue(obj) from main thread, it also notifies any active observers.
     //If a background task, use postValue(obj)
     private MutableLiveData<String> mText;
     private MutableLiveData<String> currentTab;
 
-    public WorkoutViewModel() {
+    public WorkoutView() {
         mText = new MutableLiveData<String>();
         currentTab = new MutableLiveData<String>();
     }

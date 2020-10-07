@@ -15,17 +15,17 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import code.main.ui.WorkoutViewModel;
+import code.main.ui.workouts.WorkoutView;
 
 public class WorkoutActivity extends AppCompatActivity {
 
-    private WorkoutViewModel viewModel;
+    private WorkoutView viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        viewModel = ViewModelProviders.of(this).get(WorkoutViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(WorkoutView.class);
 
         setContentView(R.layout.activity_workout_home);
         BottomNavigationView navView = findViewById(R.id.nav_view);

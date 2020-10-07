@@ -13,20 +13,20 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import code.main.R;
-import code.main.ui.WorkoutViewModel;
+import code.main.ui.workouts.WorkoutView;
 
 public class SettingsFragment extends Fragment {
 
-    private WorkoutViewModel workoutViewModel;
+    private WorkoutView WorkoutView;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        workoutViewModel = ViewModelProviders.of(this).get(WorkoutViewModel.class);
+        WorkoutView = ViewModelProviders.of(this).get(WorkoutView.class);
         View root = inflater.inflate(R.layout.fragment_settings, container, false);
         final TextView textView = root.findViewById(R.id.text_settings);
 
         textView.setText("Settings here");
 
-        workoutViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        WorkoutView.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
