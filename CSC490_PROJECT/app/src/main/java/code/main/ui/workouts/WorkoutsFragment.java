@@ -13,15 +13,14 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import code.main.R;
-import code.main.ui.WorkoutViewModel;
 
 public class WorkoutsFragment extends Fragment {
 
-    private WorkoutViewModel workoutViewModel;
+    private WorkoutView WorkoutView;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //Finds View and it's layout
-        workoutViewModel = ViewModelProviders.of(this).get(WorkoutViewModel.class);
+        WorkoutView = ViewModelProviders.of(this).get(WorkoutView.class);
         View root = inflater.inflate(R.layout.fragment_workouts, container, false);
         //Finds the text container
         final TextView textView = root.findViewById(R.id.text_workouts);
@@ -30,7 +29,7 @@ public class WorkoutsFragment extends Fragment {
         textView.setText("Workouts here");
 
         //Updates View if text is changed
-        workoutViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        WorkoutView.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
