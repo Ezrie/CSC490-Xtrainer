@@ -15,6 +15,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import code.main.database.DatabaseAdapter;
+import code.main.database.DatabaseHelper;
 import code.main.ui.WorkoutViewModel;
 
 public class WorkoutActivity extends AppCompatActivity {
@@ -24,11 +26,12 @@ public class WorkoutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         viewModel = ViewModelProviders.of(this).get(WorkoutViewModel.class);
-
         setContentView(R.layout.activity_workout_home);
         BottomNavigationView navView = findViewById(R.id.nav_view);
+
+        DatabaseAdapter adapter = new DatabaseAdapter(this);
+        DatabaseHelper datbase = adapter.getDatabase();
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
