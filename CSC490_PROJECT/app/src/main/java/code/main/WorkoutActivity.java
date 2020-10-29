@@ -27,7 +27,7 @@ public class WorkoutActivity extends AppCompatActivity {
 
         viewModel = ViewModelProviders.of(this).get(WorkoutView.class);
 
-        setContentView(R.layout.activity_workout_home);
+        setContentView(R.layout.navigation_overlay);
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
         // Passing each menu ID as a set of Ids because each
