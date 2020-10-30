@@ -21,18 +21,18 @@ public class WorkoutsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //Finds View and it's layout
         WorkoutView = ViewModelProviders.of(this).get(WorkoutView.class);
-        View root = inflater.inflate(R.layout.fragment_workouts, container, false);
+        View root = inflater.inflate(R.layout.activity_workouts, container, false);
         //Finds the text container
-        final TextView textView = root.findViewById(R.id.text_workouts);
+        //final TextView textView = root.findViewById(R.id.text_workouts);
 
         //Default text
-        textView.setText("Workouts here");
+        //textView.setText("Workouts here");
 
         //Updates View if text is changed
         WorkoutView.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+                //textView.setText(s);
             }
         });
         return root;
