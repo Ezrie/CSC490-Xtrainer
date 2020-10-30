@@ -3,8 +3,6 @@ package code.main;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +13,10 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import code.main.database.DatabaseAdapter;
+import code.main.database.DatabaseHelper;
 import code.main.ui.workouts.WorkoutView;
 
 public class WorkoutActivity extends AppCompatActivity {
@@ -30,6 +32,9 @@ public class WorkoutActivity extends AppCompatActivity {
         setContentView(R.layout.navigation_overlay);
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
+        DatabaseAdapter adapter = new DatabaseAdapter(this);
+        DatabaseHelper database = adapter.getDatabase();
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -41,6 +46,7 @@ public class WorkoutActivity extends AppCompatActivity {
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
+                //For debugging
                 Log.e("VERBOSE", "Destination: "+destination.getLabel().toString());
                 viewModel.setCurrentTab(destination.getLabel().toString());
             }
