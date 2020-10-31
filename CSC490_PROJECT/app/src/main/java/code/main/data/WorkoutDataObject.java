@@ -4,14 +4,38 @@ import java.util.ArrayList;
 
 public class WorkoutDataObject {
 
+    private boolean isPushPull;
     private String WorkoutTitle;
     private String WorkoutDescription;
-    private ArrayList<GroupDayContainer> Schedule;
+    private ArrayList<IsolationScheduleContainer> IsolationSchedule;
+    private ArrayList<PushPullScheduleContainer> PushPullSchedule;
 
-    public WorkoutDataObject(String workoutTitle, String workoutDescription, ArrayList<GroupDayContainer> schedule) {
+    public WorkoutDataObject(boolean ispushpull, String workoutTitle, String workoutDescription, ArrayList<?> Schedule) {
+        isPushPull = ispushpull;
         WorkoutTitle = workoutTitle;
         WorkoutDescription = workoutDescription;
-        Schedule = schedule;
+        if (isPushPull) {
+            PushPullSchedule = (ArrayList<PushPullScheduleContainer>) Schedule;
+        } else {
+            IsolationSchedule = (ArrayList<IsolationScheduleContainer>) Schedule;
+        }
+
+    }
+
+    public boolean isPushPull() {
+        return isPushPull;
+    }
+
+    public void setPushPull(boolean pushPull) {
+        isPushPull = pushPull;
+    }
+
+    public ArrayList<PushPullScheduleContainer> getPushPullSchedule() {
+        return PushPullSchedule;
+    }
+
+    public void setPushPullSchedule(ArrayList<PushPullScheduleContainer> pushPullSchedule) {
+        PushPullSchedule = pushPullSchedule;
     }
 
     public String getWorkoutTitle() {
@@ -30,11 +54,11 @@ public class WorkoutDataObject {
         WorkoutDescription = workoutDescription;
     }
 
-    public ArrayList<GroupDayContainer> getSchedule() {
-        return Schedule;
+    public ArrayList<IsolationScheduleContainer> getIsoSchedule() {
+        return IsolationSchedule;
     }
 
-    public void setSchedule(ArrayList<GroupDayContainer> schedule) {
-        Schedule = schedule;
+    public void setIsoSchedule(ArrayList<IsolationScheduleContainer> schedule) {
+        IsolationSchedule = schedule;
     }
 }

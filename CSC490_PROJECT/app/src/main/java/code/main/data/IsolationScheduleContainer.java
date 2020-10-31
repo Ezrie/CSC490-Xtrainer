@@ -2,8 +2,8 @@ package code.main.data;
 
 import java.util.ArrayList;
 
-public class GroupDayContainer {
-    //Class to act as container for WorkoutDataObject
+public class IsolationScheduleContainer {
+    //Class to act as container for WorkoutDataObject if workout type is isolation
     //Contains muscle groups with their selected days
 
     public enum Days{SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY};
@@ -11,7 +11,7 @@ public class GroupDayContainer {
     private ArrayList<Days> SelectedDays;
     private MuscleDataObject MuscleGroup;
 
-    public GroupDayContainer(ArrayList<Days> selectedDays, MuscleDataObject muscleGroup) {
+    public IsolationScheduleContainer(ArrayList<Days> selectedDays, MuscleDataObject muscleGroup) {
         SelectedDays = selectedDays;
         MuscleGroup = muscleGroup;
     }

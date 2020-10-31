@@ -6,6 +6,54 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+/*
+----------------------------------------------------------------------------------------------------
+Data structure under code.main.data:
+
+ExerciseDataObject - contains info for individual exercises
+    ParentGroup         -   MuscleDataObject (body region, muscle group, and muscle group image)
+    ExerciseName        -   String
+    ExerciseDescription -   String
+    ExerciseType        -   ExerciseTypeEnum (PUSH, PULL, LEG, NONE)
+    ExerciseImage       -   Drawable (Android Studio data type)
+    ExerciseGif         -   AnimatedImageDrawable (Android Studio data type - not sure of video
+                                format, if it's a youtube link then may change to String with url)
+MuscleDataObject - contains info on a muscle group's body region and image
+    BodyRegion          -   String
+    MuscleGroup         -   String
+    MuscleGroupImage    -   Drawable (Android Studio data type)
+
+
+vvv Not ideal but these two will be locally stored vvv
+
+WorkoutDataObject - contains info on pre-made or custom workouts with muscle groups and days
+    WorkoutTitle        -   String
+    WorkoutDescription  -   String
+    Schedule            -   ArrayList<ScheduleContainer> (list of groups with their set days)
+
+IsolationScheduleContainer - helper for WorkoutDataObject, connects a muscle group to days under a specific workout
+    SelectedDays        -   ArrayList<Days> (SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY)
+    MuscleGroup         -   MuscleDataObject (body region, muscle group, and muscle group image)
+
+PushPullScheduleContainer - helper for WorkoutDataObject, connects a workout type to days under a specific workout
+    SelectedDays        -   ArrayList<Days> (SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY)
+    DayType             -   ExerciseTypeEnum (PUSH, PULL, LEG, NONE)
+
+----------------------------------------------------------------------------------------------------
+What we need from the database:
+
+ExerciseDataObject:
+    get everything from a single exercise given an exercise name
+    get all the exercises given a muscle group name in alphabetical order
+    get all the exercises given an exercise type enum in alphabetical order
+MuscleDataObject:
+    get a list of all muscle groups available in alphabetical order
+
+----------------------------------------------------------------------------------------------------
+ */
+
+
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "workout.db";
