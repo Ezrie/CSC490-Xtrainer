@@ -1,7 +1,6 @@
 package code.main;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,15 +39,15 @@ public class WorkoutActivity extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_profile, R.id.navigation_workouts, R.id.navigation_settings).build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
-                //For debugging
-                Log.e("VERBOSE", "Destination: "+destination.getLabel().toString());
-                viewModel.setCurrentTab(destination.getLabel().toString());
+                if (destination.getLabel() != null) {
+                    viewModel.setCurrentTab(destination.getLabel().toString());
+                }
             }
         });
     }
