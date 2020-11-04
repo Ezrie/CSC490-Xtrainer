@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_workouts"
-        android:name="code.main.ui.workouts.WorkoutsFragment"
+        android:name="code.main.ui.workouts.WorkoutHomeFragment"
         android:label="@string/title_workouts"
-        tools:layout="@layout/fragment_workouts" />
+        tools:layout="@layout/activity_workouts" />
 
     <fragment
         android:id="@+id/navigation_settings"
