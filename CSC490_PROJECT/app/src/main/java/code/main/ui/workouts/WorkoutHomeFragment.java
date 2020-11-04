@@ -84,6 +84,16 @@ class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.ViewHolde
     public void onBindViewHolder(HomeCustomAdapter.ViewHolder holder, int position) {
         holder.mObject = Workouts.get(position);
         holder.mTitleView.setText(holder.mObject.getWorkoutTitle());
+
+        //If title is clicked set the SelectedWorkout in view model
+        View.OnClickListener clickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        };
+        holder.mTitleView.setOnClickListener(clickListener);
+
         holder.mDescriptionView.setText(holder.mObject.getWorkoutDescription());
         holder.mDescriptionView.setMovementMethod(new ScrollingMovementMethod());
 
