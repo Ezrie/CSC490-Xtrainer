@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">X-trainer</string>
-    <string name="title_activity_workout_home">MainActivity</string>
     <string name="title_profile">Profile</string>
     <string name="title_workouts">Workouts</string>
     <string name="title_settings">Settings</string>

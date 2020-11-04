@@ -1,8 +1,10 @@
 package code.main.data;
 
+import androidx.lifecycle.LiveData;
+
 import java.util.ArrayList;
 
-public class WorkoutDataObject {
+public class WorkoutDataObject extends LiveData<WorkoutDataObject> {
 
     private boolean isPushPull;
     private String WorkoutTitle;
@@ -20,6 +22,32 @@ public class WorkoutDataObject {
             IsolationSchedule = (ArrayList<IsolationScheduleContainer>) Schedule;
         }
 
+    }
+
+    public ArrayList<String> getScheduleByDay(String Day) {
+        ArrayList<String> schedule = new ArrayList<String>();
+        if(isPushPull) {
+            for(PushPullScheduleContainer container:PushPullSchedule) {
+                if(container.getSelectedDays().contains(Day)) {
+                    schedule.add(container.getDayType().toString());
+                }
+            }
+        } else {
+            for(IsolationScheduleContainer container:IsolationSchedule) {
+                if(container.getSelectedDays().contains(Day)) {
+                    schedule.add(container.getMuscleGroup().getMuscleGroup());
+                }
+            }
+        }
+        return schedule;
+    }
+
+    public String getWorkoutType() {
+        if(isPushPull) {
+            return "Push Pull Workout";
+        } else {
+            return "Muscle Isolation Workout";
+        }
     }
 
     public boolean isPushPull() {
