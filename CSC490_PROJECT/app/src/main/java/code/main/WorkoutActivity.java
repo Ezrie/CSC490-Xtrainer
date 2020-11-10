@@ -17,6 +17,8 @@ import code.main.ui.workouts.WorkoutView;
 
 public class WorkoutActivity extends AppCompatActivity {
 
+    //TODO: use onDestroy() or something so you don't have to clean the build after every run...
+
     private WorkoutView viewModel;
 
     @Override
