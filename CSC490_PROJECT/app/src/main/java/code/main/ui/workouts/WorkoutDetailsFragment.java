@@ -3,6 +3,7 @@ package code.main.ui.workouts;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
 
 import code.main.R;
 import code.main.data.WorkoutDataObject;
@@ -37,40 +36,52 @@ public class WorkoutDetailsFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.e("VERBOSE", "Details is created");
         //Finds View and it's layout
         View root = inflater.inflate(R.layout.fragment_workout_details, container, false);
 
-        TextView Title = (TextView) root.findViewById(R.id.workout_details_name);
-        Title.setText(SelectedWorkout.getWorkoutTitle());
+        Bundle mBundle = this.getArguments();
+        if(!this.getArguments().isEmpty()) {
 
-        TextView Type = (TextView) root.findViewById(R.id.workout_details_type);
-        Type.setText(SelectedWorkout.getWorkoutType());
+            SelectedWorkout = mBundle.getParcelable("WorkoutObject");
 
-        TextView Description = (TextView) root.findViewById(R.id.workout_details_description);
-        Description.setText(SelectedWorkout.getWorkoutDescription());
-        Description.setMovementMethod(new ScrollingMovementMethod());
+            TextView Title = (TextView) root.findViewById(R.id.workout_details_name);
+            Title.setText(SelectedWorkout.getWorkoutTitle());
 
-        //There will be 7 recyclerViews, one per day
-        RecyclerView sundayView = (RecyclerView) root.findViewById(R.id.sunday_list);
-        sundayView.setAdapter(new DetailsCustomAdapter(SelectedWorkout.getScheduleByDay("SUNDAY"), this.getFragmentManager()));
+            TextView Type = (TextView) root.findViewById(R.id.workout_details_type);
+            Type.setText(SelectedWorkout.getWorkoutType());
 
-        RecyclerView mondayView = (RecyclerView) root.findViewById(R.id.monday_list);
-        mondayView.setAdapter(new DetailsCustomAdapter(SelectedWorkout.getScheduleByDay("MONDAY"), this.getFragmentManager()));
+            TextView Description = (TextView) root.findViewById(R.id.workout_details_description);
+            Description.setText(SelectedWorkout.getWorkoutDescription());
+            Description.setMovementMethod(new ScrollingMovementMethod());
 
-        RecyclerView tuesdayView = (RecyclerView) root.findViewById(R.id.tuesday_list);
-        tuesdayView.setAdapter(new DetailsCustomAdapter(SelectedWorkout.getScheduleByDay("TUESDAY"), this.getFragmentManager()));
+            //temp dummy data
+            String[] temp = new String[1];
+            temp[0] = "LEG DAY";
 
-        RecyclerView wednesdayView = (RecyclerView) root.findViewById(R.id.wednesday_list);
-        wednesdayView.setAdapter(new DetailsCustomAdapter(SelectedWorkout.getScheduleByDay("WEDNESDAY"), this.getFragmentManager()));
 
-        RecyclerView thursdayView = (RecyclerView) root.findViewById(R.id.thursday_list);
-        thursdayView.setAdapter(new DetailsCustomAdapter(SelectedWorkout.getScheduleByDay("THURSDAY"), this.getFragmentManager()));
+            //There will be 7 recyclerViews, one per day
+            RecyclerView sundayView = (RecyclerView) root.findViewById(R.id.sunday_list);
+            sundayView.setAdapter(new DetailsCustomAdapter(temp, this.getFragmentManager()));
 
-        RecyclerView fridayView = (RecyclerView) root.findViewById(R.id.friday_list);
-        fridayView.setAdapter(new DetailsCustomAdapter(SelectedWorkout.getScheduleByDay("FRIDAY"), this.getFragmentManager()));
+            RecyclerView mondayView = (RecyclerView) root.findViewById(R.id.monday_list);
+            mondayView.setAdapter(new DetailsCustomAdapter(SelectedWorkout.getScheduleByDay("MONDAY"), this.getFragmentManager()));
 
-        RecyclerView saturdayView = (RecyclerView) root.findViewById(R.id.saturday_list);
-        saturdayView.setAdapter(new DetailsCustomAdapter(SelectedWorkout.getScheduleByDay("SATURDAY"), this.getFragmentManager()));
+            RecyclerView tuesdayView = (RecyclerView) root.findViewById(R.id.tuesday_list);
+            tuesdayView.setAdapter(new DetailsCustomAdapter(SelectedWorkout.getScheduleByDay("TUESDAY"), this.getFragmentManager()));
+
+            RecyclerView wednesdayView = (RecyclerView) root.findViewById(R.id.wednesday_list);
+            wednesdayView.setAdapter(new DetailsCustomAdapter(SelectedWorkout.getScheduleByDay("WEDNESDAY"), this.getFragmentManager()));
+
+            RecyclerView thursdayView = (RecyclerView) root.findViewById(R.id.thursday_list);
+            thursdayView.setAdapter(new DetailsCustomAdapter(SelectedWorkout.getScheduleByDay("THURSDAY"), this.getFragmentManager()));
+
+            RecyclerView fridayView = (RecyclerView) root.findViewById(R.id.friday_list);
+            fridayView.setAdapter(new DetailsCustomAdapter(SelectedWorkout.getScheduleByDay("FRIDAY"), this.getFragmentManager()));
+
+            RecyclerView saturdayView = (RecyclerView) root.findViewById(R.id.saturday_list);
+            saturdayView.setAdapter(new DetailsCustomAdapter(SelectedWorkout.getScheduleByDay("SATURDAY"), this.getFragmentManager()));
+        }
 
         return root;
     }
@@ -78,10 +89,10 @@ public class WorkoutDetailsFragment extends Fragment {
 
 class DetailsCustomAdapter extends RecyclerView.Adapter<DetailsCustomAdapter.ViewHolder> {
 
-    private ArrayList<String> Schedule;
+    private String[] Schedule;
     private FragmentManager Manager;
 
-    public DetailsCustomAdapter(ArrayList<String> schedule, FragmentManager manager) {
+    public DetailsCustomAdapter(String[] schedule, FragmentManager manager) {
         Schedule = schedule;
         Manager = manager;
     }
@@ -97,12 +108,12 @@ class DetailsCustomAdapter extends RecyclerView.Adapter<DetailsCustomAdapter.Vie
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onBindViewHolder(final DetailsCustomAdapter.ViewHolder holder, int position) {
-        holder.mGroup = Schedule.get(position);
+        holder.mGroup = Schedule[position];
     }
 
     @Override
     public int getItemCount() {
-        return Schedule.size();
+        return Schedule.length;
     }
 
 

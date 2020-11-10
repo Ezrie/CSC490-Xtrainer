@@ -16,14 +16,13 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import code.main.R;
-import code.main.data.IsolationScheduleContainer;
-import code.main.data.MuscleDataObject;
+import code.main.data.PushPullScheduleContainer;
 import code.main.data.WorkoutDataObject;
 
 public class WorkoutHomeFragment extends Fragment {
@@ -46,15 +45,21 @@ public class WorkoutHomeFragment extends Fragment {
         //Finds View and it's layout
         View root = inflater.inflate(R.layout.activity_workouts, container, false);
 
-        //temp dummy data
-        Workouts.add(new WorkoutDataObject(false, "title example 1", "example desc 1", new ArrayList<IsolationScheduleContainer>(Arrays.asList(new IsolationScheduleContainer(new ArrayList<IsolationScheduleContainer.Days>(Arrays.asList(IsolationScheduleContainer.Days.FRIDAY, IsolationScheduleContainer.Days.SUNDAY)), new MuscleDataObject("Body region", "Musclegroup"))))));
-        Workouts.add(new WorkoutDataObject(false, "title example 2", "example desc 2", new ArrayList<IsolationScheduleContainer>(Arrays.asList(new IsolationScheduleContainer(new ArrayList<IsolationScheduleContainer.Days>(Arrays.asList(IsolationScheduleContainer.Days.FRIDAY, IsolationScheduleContainer.Days.SUNDAY)), new MuscleDataObject("Body region", "Musclegroup"))))));
-        Workouts.add(new WorkoutDataObject(false, "title example 3 max linesssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss", "example desc 3 lets gooooooooooooooooooooooooooooooo ooooooooooooooo oooooooooooooooooooooooooo  o oooooo    oooooooooooooooooooooo o       o o o o oo ooo oo ooooooo ooooooo   oooooooo ooooo h", new ArrayList<IsolationScheduleContainer>(Arrays.asList(new IsolationScheduleContainer(new ArrayList<IsolationScheduleContainer.Days>(Arrays.asList(IsolationScheduleContainer.Days.FRIDAY, IsolationScheduleContainer.Days.SUNDAY)), new MuscleDataObject("Body region", "Musclegroup"))))));
+        //temp dummy data: Fri & Sat have Leg & Pull day
+        //TODO: Pull workouts from database.
+        PushPullScheduleContainer.Days[] schedule = new PushPullScheduleContainer.Days[2];
+        schedule[0] = PushPullScheduleContainer.Days.FRIDAY;
+        schedule[1] = PushPullScheduleContainer.Days.SATURDAY;
+        PushPullScheduleContainer[] container1 = new PushPullScheduleContainer[2];
+        container1[0] = new PushPullScheduleContainer(schedule, PushPullScheduleContainer.ExerciseTypeEnum.LEG);
+        container1[1] = new PushPullScheduleContainer(schedule, PushPullScheduleContainer.ExerciseTypeEnum.PULL);
 
+        Workouts.add(new WorkoutDataObject(true,"WorkoutTitle", "Workout Description", container1));
 
         //Set adapter
         Context context = root.getContext();
         RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.workout_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(new HomeCustomAdapter(Workouts, this.getFragmentManager()));
 
         return root;
@@ -84,16 +89,6 @@ class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.ViewHolde
     public void onBindViewHolder(HomeCustomAdapter.ViewHolder holder, int position) {
         holder.mObject = Workouts.get(position);
         holder.mTitleView.setText(holder.mObject.getWorkoutTitle());
-
-        //If title is clicked set the SelectedWorkout in view model
-        View.OnClickListener clickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        };
-        holder.mTitleView.setOnClickListener(clickListener);
-
         holder.mDescriptionView.setText(holder.mObject.getWorkoutDescription());
         holder.mDescriptionView.setMovementMethod(new ScrollingMovementMethod());
 
@@ -139,20 +134,27 @@ class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.ViewHolde
                 public void onClick(View v) {
                     //All touch events for workouts_list.xml
                     if (v.getId() == mButton.getId()) {
-                        Toast.makeText(v.getContext(), "SELECTED WORKOUT " + mTitleView.getText(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext(), "SELECTED WORKOUT : " + mTitleView.getText(), Toast.LENGTH_SHORT).show();
 
                     } else if (v.getId() == mTitleView.getId()) {
-                        FragmentTransaction t = manager.beginTransaction();
-                        Fragment mFrag = new WorkoutDetailsFragment();
-                        t.replace(R.id.home_frame, mFrag);
-                        t.commit();
+                        Toast.makeText(v.getContext(), "GO TO WORKOUT : " + mTitleView.getText(), Toast.LENGTH_SHORT).show();
+
+                        Bundle mBundle = new Bundle();
+                        mBundle.putParcelable("WorkoutObject", mObject);
+
+                        Fragment fragment = new WorkoutDetailsFragment();
+                        fragment.setArguments(mBundle);
+                        FragmentTransaction fragmentTransaction = manager.beginTransaction();
+                        fragmentTransaction.add(R.id.home_frame, fragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
                     }
                 }
             };
 
             //Title click leads to WorkoutDetailsFragment
             mTitleView.setOnClickListener(mListener);
-            //TODO: Select button click changes user's selected workout (Profile)
+            //TODO: Select button click changes user's selected workout (in Profile)
             mButton.setOnClickListener(mListener);
         }
     }
