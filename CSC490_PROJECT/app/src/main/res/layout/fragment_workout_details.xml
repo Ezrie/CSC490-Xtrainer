@@ -1,271 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/details_frame"
-    android:background="#FFFFFF">
+    android:id="@+id/details_frame">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:padding="5pt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/workout_select"
-                android:text="@string/button_select_workout"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/workout_edit"
-                android:text="@string/button_edit_workout"/>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/workout_details_name"
-                android:gravity="center"
-                android:textAppearance="?attr/textAppearanceListItem"
-                android:textStyle="bold"
-                android:textSize="12pt"
-                android:layout_marginBottom="2pt"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/workout_details_type"
-                android:gravity="center"
-                android:textAppearance="?attr/textAppearanceListItemSecondary"
-                android:textSize="8pt"/>
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <TextView
-        android:paddingHorizontal="5pt"
-        android:layout_width="match_parent"
-        android:layout_height="50pt"
-        android:id="@+id/workout_details_description"
-        android:layout_gravity="center"
-        android:textAppearance="?attr/textAppearanceListItem"
-        android:scrollbars="vertical" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FFFFFF"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/sunday_item"
             android:layout_width="match_parent"
-            android:layout_height="25pt"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingHorizontal="5pt" >
+            android:padding="5pt">
 
-            <TextView
-                android:layout_width="25pt"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:textAppearance="?attr/textAppearanceListItem"
-                android:textSize="8pt"
-                android:text="@string/med_sunday" />
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/sunday_list"
+                <Button
+                    android:id="@+id/workout_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_select_workout" />
+
+                <Button
+                    android:id="@+id/workout_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_edit_workout" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:name="code.main.ui.workouts.WorkoutDetailsFragment"
-                app:layoutManager="LinearLayoutManager"
-                tools:context=".ui.workouts.WorkoutDetailsFragment"
-                tools:listitem="@layout/schedule_list"
-                android:orientation="horizontal"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/workout_details_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2pt"
+                    android:gravity="center"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textSize="12pt"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/workout_details_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textAppearance="?attr/textAppearanceListItemSecondary"
+                    android:textSize="8pt" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/workout_details_description"
+            android:layout_width="match_parent"
+            android:layout_height="50pt"
+            android:layout_gravity="center"
+            android:paddingHorizontal="5pt"
+            android:scrollbars="vertical"
+            android:textAppearance="?attr/textAppearanceListItem" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/monday_item"
             android:layout_width="match_parent"
-            android:layout_height="25pt"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5pt" >
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="25pt"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:textAppearance="?attr/textAppearanceListItem"
-                android:textSize="8pt"
-                android:text="@string/med_monday" />
-
-            <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/monday_list"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/sunday_item"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:name="code.main.ui.workouts.WorkoutDetailsFragment"
-                app:layoutManager="LinearLayoutManager"
-                tools:context=".ui.workouts.WorkoutDetailsFragment"
-                tools:listitem="@layout/schedule_list"
-                android:orientation="horizontal"/>
+                android:layout_height="25pt"
+                android:orientation="horizontal"
+                android:paddingHorizontal="5pt">
+
+                <TextView
+                    android:layout_width="25pt"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/med_sunday"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textSize="8pt" />
+
+                <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/sunday_list"
+                    android:name="code.main.ui.workouts.WorkoutDetailsFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layoutManager="LinearLayoutManager"
+                    tools:context=".ui.workouts.WorkoutDetailsFragment"
+                    tools:listitem="@layout/schedule_list" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/monday_item"
+                android:layout_width="match_parent"
+                android:layout_height="25pt"
+                android:orientation="horizontal"
+                android:paddingHorizontal="5pt">
+
+                <TextView
+                    android:layout_width="25pt"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/med_monday"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textSize="8pt" />
+
+                <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/monday_list"
+                    android:name="code.main.ui.workouts.WorkoutDetailsFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layoutManager="LinearLayoutManager"
+                    tools:context=".ui.workouts.WorkoutDetailsFragment"
+                    tools:listitem="@layout/schedule_list" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/tuesday_item"
+                android:layout_width="match_parent"
+                android:layout_height="25pt"
+                android:orientation="horizontal"
+                android:paddingHorizontal="5pt">
+
+                <TextView
+                    android:layout_width="25pt"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/med_tuesday"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textSize="8pt" />
+
+                <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/tuesday_list"
+                    android:name="code.main.ui.workouts.WorkoutDetailsFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layoutManager="LinearLayoutManager"
+                    tools:context=".ui.workouts.WorkoutDetailsFragment"
+                    tools:listitem="@layout/schedule_list" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/wednesday_item"
+                android:layout_width="match_parent"
+                android:layout_height="25pt"
+                android:orientation="horizontal"
+                android:paddingHorizontal="5pt">
+
+                <TextView
+                    android:layout_width="25pt"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/med_wednesday"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textSize="8pt" />
+
+                <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/wednesday_list"
+                    android:name="code.main.ui.workouts.WorkoutDetailsFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layoutManager="LinearLayoutManager"
+                    tools:context=".ui.workouts.WorkoutDetailsFragment"
+                    tools:listitem="@layout/schedule_list" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/thursday_item"
+                android:layout_width="match_parent"
+                android:layout_height="25pt"
+                android:orientation="horizontal"
+                android:paddingHorizontal="5pt">
+
+                <TextView
+                    android:layout_width="25pt"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/med_thursday"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textSize="8pt" />
+
+                <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/thursday_list"
+                    android:name="code.main.ui.workouts.WorkoutDetailsFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layoutManager="LinearLayoutManager"
+                    tools:context=".ui.workouts.WorkoutDetailsFragment"
+                    tools:listitem="@layout/schedule_list" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/friday_item"
+                android:layout_width="match_parent"
+                android:layout_height="25pt"
+                android:orientation="horizontal"
+                android:paddingHorizontal="5pt">
+
+                <TextView
+                    android:layout_width="25pt"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/med_friday"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textSize="8pt" />
+
+                <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/friday_list"
+                    android:name="code.main.ui.workouts.WorkoutDetailsFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layoutManager="LinearLayoutManager"
+                    tools:context=".ui.workouts.WorkoutDetailsFragment"
+                    tools:listitem="@layout/schedule_list" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/saturday_item"
+                android:layout_width="match_parent"
+                android:layout_height="25pt"
+                android:orientation="horizontal"
+                android:paddingHorizontal="5pt">
+
+                <TextView
+                    android:layout_width="25pt"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/med_saturday"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textSize="8pt" />
+
+                <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/saturday_list"
+                    android:name="code.main.ui.workouts.WorkoutDetailsFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layoutManager="LinearLayoutManager"
+                    tools:context=".ui.workouts.WorkoutDetailsFragment"
+                    tools:listitem="@layout/schedule_list" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/tuesday_item"
-            android:layout_width="match_parent"
-            android:layout_height="25pt"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5pt" >
-
-            <TextView
-                android:layout_width="25pt"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:textAppearance="?attr/textAppearanceListItem"
-                android:textSize="8pt"
-                android:text="@string/med_tuesday" />
-
-            <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/tuesday_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:name="code.main.ui.workouts.WorkoutDetailsFragment"
-                app:layoutManager="LinearLayoutManager"
-                tools:context=".ui.workouts.WorkoutDetailsFragment"
-                tools:listitem="@layout/schedule_list"
-                android:orientation="horizontal"/>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/wednesday_item"
-            android:layout_width="match_parent"
-            android:layout_height="25pt"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5pt" >
-
-            <TextView
-                android:layout_width="25pt"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:textAppearance="?attr/textAppearanceListItem"
-                android:textSize="8pt"
-                android:text="@string/med_wednesday" />
-
-            <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/wednesday_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:name="code.main.ui.workouts.WorkoutDetailsFragment"
-                app:layoutManager="LinearLayoutManager"
-                tools:context=".ui.workouts.WorkoutDetailsFragment"
-                tools:listitem="@layout/schedule_list"
-                android:orientation="horizontal"/>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/thursday_item"
-            android:layout_width="match_parent"
-            android:layout_height="25pt"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5pt" >
-
-            <TextView
-                android:layout_width="25pt"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:textAppearance="?attr/textAppearanceListItem"
-                android:textSize="8pt"
-                android:text="@string/med_thursday" />
-
-            <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/thursday_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:name="code.main.ui.workouts.WorkoutDetailsFragment"
-                app:layoutManager="LinearLayoutManager"
-                tools:context=".ui.workouts.WorkoutDetailsFragment"
-                tools:listitem="@layout/schedule_list"
-                android:orientation="horizontal"/>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/friday_item"
-            android:layout_width="match_parent"
-            android:layout_height="25pt"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5pt" >
-
-            <TextView
-                android:layout_width="25pt"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:textAppearance="?attr/textAppearanceListItem"
-                android:textSize="8pt"
-                android:text="@string/med_friday" />
-
-            <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/friday_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:name="code.main.ui.workouts.WorkoutDetailsFragment"
-                app:layoutManager="LinearLayoutManager"
-                tools:context=".ui.workouts.WorkoutDetailsFragment"
-                tools:listitem="@layout/schedule_list"
-                android:orientation="horizontal"/>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/saturday_item"
-            android:layout_width="match_parent"
-            android:layout_height="25pt"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5pt" >
-
-            <TextView
-                android:layout_width="25pt"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:textAppearance="?attr/textAppearanceListItem"
-                android:textSize="8pt"
-                android:text="@string/med_saturday" />
-
-            <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/saturday_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:name="code.main.ui.workouts.WorkoutDetailsFragment"
-                app:layoutManager="LinearLayoutManager"
-                tools:context=".ui.workouts.WorkoutDetailsFragment"
-                tools:listitem="@layout/schedule_list"
-                android:orientation="horizontal"/>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-
-</androidx.appcompat.widget.LinearLayoutCompat>
+</FrameLayout>

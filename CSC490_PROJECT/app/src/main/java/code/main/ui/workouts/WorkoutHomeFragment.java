@@ -48,11 +48,13 @@ public class WorkoutHomeFragment extends Fragment {
         //temp dummy data: Fri & Sat have Leg & Pull day
         //TODO: Pull workouts from database.
         PushPullScheduleContainer.Days[] schedule = new PushPullScheduleContainer.Days[2];
-        schedule[0] = PushPullScheduleContainer.Days.FRIDAY;
+        schedule[0] = PushPullScheduleContainer.Days.WEDNESDAY;
         schedule[1] = PushPullScheduleContainer.Days.SATURDAY;
-        PushPullScheduleContainer[] container1 = new PushPullScheduleContainer[2];
+        PushPullScheduleContainer[] container1 = new PushPullScheduleContainer[4];
         container1[0] = new PushPullScheduleContainer(schedule, PushPullScheduleContainer.ExerciseTypeEnum.LEG);
         container1[1] = new PushPullScheduleContainer(schedule, PushPullScheduleContainer.ExerciseTypeEnum.PULL);
+        container1[2] = new PushPullScheduleContainer(schedule, PushPullScheduleContainer.ExerciseTypeEnum.PULL);
+        container1[3] = new PushPullScheduleContainer(schedule, PushPullScheduleContainer.ExerciseTypeEnum.PULL);
 
         Workouts.add(new WorkoutDataObject(true,"WorkoutTitle", "Workout Description", container1));
 
@@ -135,10 +137,8 @@ class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.ViewHolde
                     //All touch events for workouts_list.xml
                     if (v.getId() == mButton.getId()) {
                         Toast.makeText(v.getContext(), "SELECTED WORKOUT : " + mTitleView.getText(), Toast.LENGTH_SHORT).show();
-
+                        //TODO: Select button click changes user's selected workout (in Profile)
                     } else if (v.getId() == mTitleView.getId()) {
-                        Toast.makeText(v.getContext(), "GO TO WORKOUT : " + mTitleView.getText(), Toast.LENGTH_SHORT).show();
-
                         Bundle mBundle = new Bundle();
                         mBundle.putParcelable("WorkoutObject", mObject);
 
@@ -154,7 +154,7 @@ class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.ViewHolde
 
             //Title click leads to WorkoutDetailsFragment
             mTitleView.setOnClickListener(mListener);
-            //TODO: Select button click changes user's selected workout (in Profile)
+
             mButton.setOnClickListener(mListener);
         }
     }

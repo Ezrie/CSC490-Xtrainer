@@ -18,6 +18,7 @@
     <string name="setting_google_calendar">Use Google Calendar</string>
     <string name="setting_daily_notification">Send daily notification</string>
     <string name="setting_theme">App theme</string>
+    <string name="weight_input_hint">Input weight amount</string>
 
     <string name="short_sunday">Su</string>
     <string name="short_monday">M</string>

@@ -20,6 +20,8 @@ public class WorkoutActivity extends AppCompatActivity {
     //TODO: use onDestroy() or something so you don't have to clean the build after every run...
 
     private WorkoutView viewModel;
+    private DatabaseAdapter adapter;
+    private DatabaseHelper database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +32,8 @@ public class WorkoutActivity extends AppCompatActivity {
         setContentView(R.layout.navigation_overlay);
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
-        DatabaseAdapter adapter = new DatabaseAdapter(this);
-        DatabaseHelper database = adapter.getDatabase();
+        adapter = new DatabaseAdapter(this);
+        database = adapter.getDatabase();
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -40,5 +42,10 @@ public class WorkoutActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
