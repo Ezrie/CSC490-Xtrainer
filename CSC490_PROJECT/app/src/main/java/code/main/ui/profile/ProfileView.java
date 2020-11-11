@@ -1,4 +1,6 @@
 package code.main.ui.profile;
 
-public class ProfileView {
+import androidx.lifecycle.ViewModel;
+
+public class ProfileView extends ViewModel {
 }
