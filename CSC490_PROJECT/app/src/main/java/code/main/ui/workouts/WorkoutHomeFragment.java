@@ -50,7 +50,7 @@ public class WorkoutHomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         //Finds View and it's layout
-        View root = inflater.inflate(R.layout.activity_workouts, container, false);
+        View root = inflater.inflate(R.layout.fragment_workout_home, container, false);
 
         //temp dummy data: Fri & Sat have Leg & Pull day
         //TODO: Pull workouts from database.

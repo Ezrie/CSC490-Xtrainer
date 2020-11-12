@@ -10,15 +10,14 @@
     <string name="button_create_workout">Custom Workout</string>
     <string name="button_ok">OK</string>
     <string name="button_cancel">CANCEL</string>
-    <string name="header_workout_group">Exercise Groups</string>
-    <string name="header_workout_detail">Exercise Details</string>
-    <string name="header_settings">Settings</string>
     <string name="setting_link_google">Link Google account</string>
     <string name="setting_unlink_google">Unlink Google account</string>
     <string name="setting_google_calendar">Use Google Calendar</string>
     <string name="setting_daily_notification">Send daily notification</string>
     <string name="setting_theme">App theme</string>
     <string name="weight_input_hint">Input weight amount</string>
+    <string name="custom_name_hint">Workout Name</string>
+    <string name="custom_description_hint">Workout Description</string>
 
     <string name="short_sunday">Su</string>
     <string name="short_monday">M</string>

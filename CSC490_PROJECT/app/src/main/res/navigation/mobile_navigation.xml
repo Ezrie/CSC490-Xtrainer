@@ -15,7 +15,7 @@
         android:id="@+id/navigation_workouts"
         android:name="code.main.ui.workouts.WorkoutHomeFragment"
         android:label="@string/title_workouts"
-        tools:layout="@layout/activity_workouts">
+        tools:layout="@layout/fragment_workout_home">
         <action
             android:id="@+id/action_navigation_workouts_to_workoutDetailsFragment"
             app:destination="@id/workoutDetailsFragment"
