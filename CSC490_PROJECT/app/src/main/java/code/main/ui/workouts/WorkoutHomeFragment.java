@@ -41,7 +41,14 @@ public class WorkoutHomeFragment extends Fragment {
     }
 
     @Override
+    public void onStop() {
+        Workouts.clear();
+        super.onStop();
+    }
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         //Finds View and it's layout
         View root = inflater.inflate(R.layout.activity_workouts, container, false);
 

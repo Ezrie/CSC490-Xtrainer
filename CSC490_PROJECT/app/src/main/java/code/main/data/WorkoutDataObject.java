@@ -2,7 +2,6 @@ package code.main.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -31,14 +30,13 @@ public class WorkoutDataObject implements Parcelable {
                 for(int j = 0; j < ((PushPullScheduleContainer) Schedule[i]).getSelectedDays().length; j++) {
                     if (((PushPullScheduleContainer)Schedule[i]).getSelectedDays()[j].equals(PushPullScheduleContainer.Days.valueOf(Day))) {
                         schedule.add(((PushPullScheduleContainer)Schedule[i]).getDayType().toString());
-                        Log.e("VERBOSE", "Added to " + Day + " schedule: " + ((PushPullScheduleContainer)Schedule[i]).getDayType().toString());
-                    }
+                        }
                 }
             }
         } else {
             for(int i = 0; i < Schedule.length; i++) {
                 for(int j = 0; j < ((IsolationScheduleContainer)Schedule[i]).getSelectedDays().length; j++) {
-                    if (((IsolationScheduleContainer)Schedule[i]).getSelectedDays()[j].equals(Day)) {
+                    if (((IsolationScheduleContainer)Schedule[i]).getSelectedDays()[j].equals(IsolationScheduleContainer.Days.valueOf(Day))) {
                         schedule.add(((IsolationScheduleContainer)Schedule[i]).getMuscleGroup().getMuscleGroupName());
                     }
                 }

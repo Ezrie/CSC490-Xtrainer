@@ -27,7 +27,7 @@
         android:gravity="center_vertical"
         android:maxLines="1"
         android:scrollbars="horizontal"
-        android:textSize="10pt"/>
+        android:textSize="8pt"/>
 
     <EditText
         android:id="@+id/group_input"

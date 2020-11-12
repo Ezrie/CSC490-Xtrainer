@@ -44,8 +44,4 @@ public class WorkoutActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 }
