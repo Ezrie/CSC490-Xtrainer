@@ -76,7 +76,7 @@
             android:layout_height="70pt"
             android:background="#EEEEEE">
 
-            <EditText
+            <TextView
                 android:id="@+id/workout_details_description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -84,8 +84,8 @@
                 android:layout_margin="5pt"
                 android:background="#FFFFFF"
                 android:gravity="start"
+                android:textColor="#000000"
                 android:hint="@string/custom_description_hint"
-                android:inputType="text"
                 android:padding="3pt"
                 android:scrollbars="vertical"
                 android:textSize="8pt" />

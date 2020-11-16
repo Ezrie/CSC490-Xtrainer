@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,14 +14,10 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import code.main.database.DatabaseAdapter;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -55,10 +50,6 @@ public class SignInActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-
-
-
-
     }
 
     @Override
@@ -105,7 +96,7 @@ public class SignInActivity extends AppCompatActivity {
 
         if (account != null) {
             personName = account.getDisplayName();
-            Log.e("VERBOSE", personName);
+
             personEmail = account.getEmail();
             personId = account.getId();
             personPhoto = account.getPhotoUrl();
@@ -114,18 +105,10 @@ public class SignInActivity extends AppCompatActivity {
             Bundle bundle = new Bundle();
             bundle.putString("PERSON_NAME", personName);
             bundle.putString("PERSON_EMAIL", personEmail);
-
+            Log.e("VERBOSE", personName);
             bundle.putString("PERSON_ID", personId);
             i.putExtras(bundle);
             i.putExtra("image_URI", personPhoto);
-
-            /*
-            Fragment settings_fragment = new SettingsFragment();
-            settings_fragment.setArguments(bundle);
-            FragmentTransaction transaction =getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.settings_fragment, settings_fragment);
-            transaction.commit();
-            */
 
             startActivity(i);
             finish();
