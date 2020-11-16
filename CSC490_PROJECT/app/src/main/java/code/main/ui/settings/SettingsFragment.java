@@ -20,9 +20,9 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         WorkoutView = ViewModelProviders.of(this).get(WorkoutView.class);
         View root = inflater.inflate(R.layout.fragment_settings, container, false);
-        final TextView textView = root.findViewById(R.id.text_settings);
+        //final TextView textView = root.findViewById(R.id.text_settings);
 
-        textView.setText("Settings To Be Added");
+        //textView.setText("Settings To Be Added");
 
         /*
         WorkoutView.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
