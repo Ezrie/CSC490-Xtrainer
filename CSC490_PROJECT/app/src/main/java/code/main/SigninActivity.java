@@ -1,9 +1,10 @@
 package code.main;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
 public class SigninActivity extends AppCompatActivity {
@@ -20,7 +22,14 @@ public class SigninActivity extends AppCompatActivity {
     private static final String TAG ="";
     SignInButton signInButton;
     private static final int RC_SIGN_IN =  1;
+    private String personName;
+    private String personEmail;
+    private String personId;
+    private Uri personPhoto;
     protected static final String CLIENT_SERVER_ID = "730176124480-35nifq78ep4f6gqvjnsod05jfpfheoaa.apps.googleusercontent.com";
+
+    public SigninActivity() {
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,22 +73,21 @@ public class SigninActivity extends AppCompatActivity {
     }
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        if (completedTask.isComplete()){
-            goProfileActivity();
-        }
-        else
-            Toast.makeText(getApplicationContext(),"Sign in failed", Toast.LENGTH_LONG).show();
-            /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            updateUI(account);@@@@@@@@@@@@@@@@@@@*/
+
+            // Signed in successfully, show authenticated UI.
+            updateUI(account);
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
+            updateUI(null);
+        }
     }
 
-    private void goProfileActivity(){
-        Intent intent = new Intent(SigninActivity.this, ProfileActivity.class);
-        startActivity(intent);
-    }
 
-    /*@Override @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    @Override
     protected void onStart() {
         super.onStart();
         // Check for existing Google Sign In account, if the user is already signed in
@@ -94,22 +102,41 @@ public class SigninActivity extends AppCompatActivity {
         // Signed in successfully, show authenticated UI.
 
         if (account != null) {
-            String personName = account.getDisplayName();
-            String personEmail = account.getEmail();
-            String personId = account.getIdToken();
-            Uri personPhoto = account.getPhotoUrl();
+            personName = account.getDisplayName();
+            personEmail = account.getEmail();
+            personId = account.getId();
+            personPhoto = account.getPhotoUrl();
 
-            Intent i = new Intent(SigninActivity.this, ProfileActivity.class);
+            Intent i = new Intent(SigninActivity.this, SettingsActivity.class);
             Bundle bundle = new Bundle();
             bundle.putString("PERSON_NAME", personName);
             bundle.putString("PERSON_EMAIL", personEmail);
-            //bundle.putString("PERSON_ID", personId);
+
             bundle.putString("PERSON_ID", personId);
             i.putExtras(bundle);
             i.putExtra("image_URI", personPhoto);
+
+            /*
+            Fragment settings_fragment = new SettingsFragment();
+            settings_fragment.setArguments(bundle);
+            FragmentTransaction transaction =getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.settings_fragment, settings_fragment);
+            transaction.commit();
+            */
+
             startActivity(i);
             finish();
         }
 
-    }@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+    }
+
+    public String getToken(){
+        return this.personId;
+    }
+
+    public void setToken(String token){
+        this.personId = token;
+    }
+
 }
+

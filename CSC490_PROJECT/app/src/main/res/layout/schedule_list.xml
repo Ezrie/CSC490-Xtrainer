@@ -4,12 +4,10 @@
     android:layout_height="wrap_content"
     android:padding="1.5pt">
 
-
-
-<Button
-    android:id="@+id/schedule_item"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"/>
+    <Button
+        android:id="@+id/schedule_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
 
 </LinearLayout>
