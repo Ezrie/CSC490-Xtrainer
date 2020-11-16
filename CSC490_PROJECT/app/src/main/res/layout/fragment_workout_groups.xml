@@ -31,7 +31,7 @@
             android:orientation="vertical"
             app:layoutManager="LinearLayoutManager"
             tools:context=".ui.workouts.WorkoutGroupFragment"
-            tools:listitem="@layout/group_list" />
+            tools:listitem="@layout/list_group" />
 
     </LinearLayout>
 

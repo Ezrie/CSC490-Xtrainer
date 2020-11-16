@@ -8,6 +8,10 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -16,8 +20,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class SigninActivity extends AppCompatActivity {
+import code.main.database.DatabaseAdapter;
+
+public class SignInActivity extends AppCompatActivity {
 
     private static final String TAG ="";
     SignInButton signInButton;
@@ -28,32 +35,27 @@ public class SigninActivity extends AppCompatActivity {
     private Uri personPhoto;
     protected static final String CLIENT_SERVER_ID = "730176124480-35nifq78ep4f6gqvjnsod05jfpfheoaa.apps.googleusercontent.com";
 
-    public SigninActivity() {
+    public SignInActivity() {
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signinactivity);
+
+        setContentView(R.layout.settings_navigation_overlay);
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.navigation_profile, R.id.navigation_workouts, R.id.navigation_settings).build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
+        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(navView, navController);
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestId()
-                //.requestIdToken(CLIENT_SERVER_ID)
-                .requestProfile()
-                .requestEmail()
-                .build();
 
-        // Build a GoogleSignInClient with the options specified by gso.
-        final GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        signInButton = findViewById(R.id.sign_in_button);
-        signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-                startActivityForResult(signInIntent, RC_SIGN_IN);
-            }
-        });
 
 
 
@@ -103,11 +105,12 @@ public class SigninActivity extends AppCompatActivity {
 
         if (account != null) {
             personName = account.getDisplayName();
+            Log.e("VERBOSE", personName);
             personEmail = account.getEmail();
             personId = account.getId();
             personPhoto = account.getPhotoUrl();
 
-            Intent i = new Intent(SigninActivity.this, SettingsActivity.class);
+            Intent i = new Intent(SignInActivity.this, SignInActivity.class);
             Bundle bundle = new Bundle();
             bundle.putString("PERSON_NAME", personName);
             bundle.putString("PERSON_EMAIL", personEmail);
@@ -137,6 +140,4 @@ public class SigninActivity extends AppCompatActivity {
     public void setToken(String token){
         this.personId = token;
     }
-
 }
-

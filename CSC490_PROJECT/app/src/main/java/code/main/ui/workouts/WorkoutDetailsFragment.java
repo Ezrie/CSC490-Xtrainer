@@ -95,7 +95,7 @@ class DetailsCustomAdapter extends RecyclerView.Adapter<DetailsCustomAdapter.Vie
     @NonNull
     @Override
     public DetailsCustomAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.schedule_list, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_schedule, parent, false);
         return new DetailsCustomAdapter.ViewHolder(view, Manager);
     }
 

@@ -205,7 +205,7 @@ class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.ViewHolde
     @NonNull
     @Override
     public HomeCustomAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.workouts_list, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_workouts, parent, false);
         return new HomeCustomAdapter.ViewHolder(view, Manager);
     }
 
@@ -258,7 +258,7 @@ class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.ViewHolde
             View.OnClickListener mListener = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //All touch events for workouts_list.xml
+                    //All touch events for workout list.xml
                     if (v.getId() == mButton.getId()) {
                         Toast.makeText(v.getContext(), "SELECTED WORKOUT : " + mTitleView.getText(), Toast.LENGTH_SHORT).show();
                         //TODO: Select button click changes user's selected workout (in Profile)

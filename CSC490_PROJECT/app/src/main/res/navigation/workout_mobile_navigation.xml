@@ -5,9 +5,9 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@id/navigation_workouts">
 
-    <fragment
+    <activity
         android:id="@+id/navigation_profile"
-        android:name="code.main.ui.profile.ProfileFragment"
+        android:name="code.main.ProfileActivity"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 
@@ -22,11 +22,11 @@
             app:popUpTo="@id/navigation_workouts"/>
     </fragment>
 
-    <fragment
+    <activity
         android:id="@+id/navigation_settings"
-        android:name="code.main.ui.settings.SettingsFragment"
         android:label="@string/title_settings"
-        tools:layout="@layout/fragment_settings" />
+        android:name="code.main.SignInActivity"
+        tools:layout="@layout/fragment_sign_in"/>
     <fragment
         android:id="@+id/workoutDetailsFragment"
         android:name="code.main.ui.workouts.WorkoutDetailsFragment"

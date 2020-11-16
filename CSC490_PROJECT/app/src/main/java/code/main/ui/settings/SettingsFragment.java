@@ -63,7 +63,7 @@ public class SettingsFragment extends Fragment {
     }
 
     private void goToSignIn(){
-        Intent goToSignIn = new Intent(SettingsFragment.this.getActivity(), SigninActivity.class);
+        Intent goToSignIn = new Intent(SettingsFragment.this.getActivity(), SignInActivity.class);
         startActivity(goToSignIn);
     }
 
