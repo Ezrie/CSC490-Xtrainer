@@ -1,6 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25pt"
+        android:orientation="horizontal"
+        android:layout_marginVertical="10pt">
+
+        <ToggleButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:textOff="@string/short_sunday"
+            android:textOn="@string/short_sunday"/>
+
+        <ToggleButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:textOff="@string/short_monday"
+            android:textOn="@string/short_monday"/>
+        <ToggleButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:textOff="@string/short_tuesday"
+            android:textOn="@string/short_tuesday"/>
+        <ToggleButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:textOff="@string/short_wednesday"
+            android:textOn="@string/short_wednesday"/>
+        <ToggleButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:textOff="@string/short_thursday"
+            android:textOn="@string/short_thursday"/>
+        <ToggleButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:textOff="@string/short_friday"
+            android:textOn="@string/short_friday"/>
+        <ToggleButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:textOff="@string/short_saturday"
+            android:textOn="@string/short_saturday"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/custom_select_list"
+        android:paddingVertical="1.5pt"
+        android:background="#EEEEEE"
+        android:name="code.main.ui.custom."
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layoutManager="LinearLayoutManager"
+        tools:context=".ui.workouts.WorkoutGroupFragment"
+        tools:listitem="@layout/group_list" />
+
+</LinearLayout>
