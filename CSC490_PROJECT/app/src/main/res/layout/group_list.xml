@@ -3,15 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:paddingVertical="1.5pt"
+    android:orientation="horizontal"
+    android:background="#EEEEEE">
 
     <TextView
         android:id="@+id/group_hyphen"
+        android:background="#FFFFFF"
         android:layout_width="wrap_content"
         android:layout_height="25pt"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="10pt"
-        android:layout_marginEnd="3pt"
+        android:paddingStart="10pt"
+        android:paddingEnd="3pt"
         android:gravity="center_vertical"
         android:text="-"
         android:textSize="10pt"
@@ -21,13 +24,14 @@
         android:id="@+id/group_name"
         android:layout_width="match_parent"
         android:layout_height="25pt"
-        android:layout_marginEnd="30pt"
         android:layout_toEndOf="@id/group_hyphen"
         android:clickable="true"
         android:gravity="center_vertical"
+        android:layout_marginEnd="30pt"
         android:maxLines="1"
+        android:background="#FFFFFF"
         android:scrollbars="horizontal"
-        android:textSize="10pt"/>
+        android:textSize="8pt"/>
 
     <EditText
         android:id="@+id/group_input"
@@ -35,9 +39,11 @@
         android:layout_height="25pt"
         android:layout_alignParentEnd="true"
         android:layout_gravity="end"
-        android:layout_marginEnd="3pt"
+        android:paddingEnd="3pt"
+        android:background="#FFFFFF"
+        android:paddingStart="0dp"
         android:autofillHints="@string/weight_input_hint"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:maxLines="1"
         android:textSize="8pt"/>
 </RelativeLayout>

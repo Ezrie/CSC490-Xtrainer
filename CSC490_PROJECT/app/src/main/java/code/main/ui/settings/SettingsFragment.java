@@ -1,93 +1,37 @@
 package code.main.ui.settings;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-
 import code.main.R;
-import code.main.SigninActivity;
 import code.main.ui.workouts.WorkoutView;
 
 public class SettingsFragment extends Fragment {
-    /*
+
     private WorkoutView WorkoutView;
-    Button signOutButton;
-    Button disconnectButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         WorkoutView = ViewModelProviders.of(this).get(WorkoutView.class);
         View root = inflater.inflate(R.layout.fragment_settings, container, false);
+        final TextView textView = root.findViewById(R.id.text_settings);
 
-        String id;
-        try {
-            id = getArguments().getString("PERSON_ID");
-        } catch (NullPointerException e) {
-            id = "null";
-        }
+        textView.setText("Settings To Be Added");
 
-        // Configure sign-in to request the user's ID, email address, and basic
-        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestId()
-                //.requestIdToken(CLIENT_SERVER_ID)
-                .requestProfile()
-                .requestEmail()
-                .build();
-
-        // Build a GoogleSignInClient with the options specified by gso.
-        final GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this.getActivity(), gso);
-
-        final TextView settings_title = root.findViewById(R.id.settings_title);
-        final TextView person_id = root.findViewById(R.id.id);
-        final TextView person_email = root.findViewById(R.id.email);
-        final TextView person_name = root.findViewById(R.id.name);
-
-        settings_title.setText("Settings To Be Added");
-        person_email.setText("Email");
-        person_name.setText("Name");
-
-        signOutButton = root.findViewById(R.id.sign_out_button);
-        signOutButton.setOnClickListener(new View.OnClickListener() {
+        /*
+        WorkoutView.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
-            public void onClick(View v) {
-                mGoogleSignInClient.signOut();
-                goToSignIn();
+            public void onChanged(@Nullable String s) {
+                textView.setText(s);
             }
         });
-
-        disconnectButton = root.findViewById(R.id.disconnect_button);
-        disconnectButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View V){
-                mGoogleSignInClient.revokeAccess();
-                goToSignIn();
-                revokeHelper();
-            }
-        });
-
+        */
         return root;
     }
-
-    private void goToSignIn(){
-        Intent goToSignIn = new Intent(SettingsFragment.this.getActivity(), SigninActivity.class);
-        startActivity(goToSignIn);
-    }
-
-    //TO DO revoke from back end possibly
-    protected void revokeHelper(){
-
-    }*/
 }

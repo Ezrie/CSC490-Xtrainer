@@ -1,19 +1,20 @@
 package code.main.ui.workouts;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,7 +42,7 @@ public class WorkoutGroupFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_workout_groups, container, false);
 
         Bundle mBundle = this.getArguments();
-        if(!this.getArguments().isEmpty()) {
+        if (!this.getArguments().isEmpty()) {
 
             groupName = mBundle.getString("GroupName");
             isPushPull = mBundle.getBoolean("IsPushPull");
@@ -61,24 +62,34 @@ public class WorkoutGroupFragment extends Fragment {
             exerciseWeights[2] = 2.001;
             exerciseWeights[3] = .0002;
 
-            TextView Title = (TextView) root.findViewById(R.id.group_name);
-            Title.setText(groupName);
-            Title.setMovementMethod(new ScrollingMovementMethod());
+            TextView Title = (TextView) root.findViewById(R.id.group_header);
+            Title.setText((groupName + " Exercises"));
         }
         RecyclerView recyclerView = root.findViewById(R.id.group_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        recyclerView.setAdapter(new GroupCustomAdapter(exerciseNames, exerciseWeights, this.getFragmentManager()));
+        recyclerView.setAdapter(new GroupCustomAdapter(groupName, exerciseNames, exerciseWeights, this.getFragmentManager()));
         return root;
+    }
+
+    //TODO: fix keyboard not closing on pause.
+    @Override
+    public void onPause() {
+        super.onPause();
+        this.getView().clearFocus();
+        InputMethodManager imm = (InputMethodManager) this.getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(this.getView().getWindowToken(), 0);
     }
 }
 
 class GroupCustomAdapter extends RecyclerView.Adapter<GroupCustomAdapter.ViewHolder> {
 
+    private String groupName;
     private String[] exerciseNames;
     private double[] exerciseWeights;
     private FragmentManager Manager;
 
-    public GroupCustomAdapter(String[] names, double[] weights, FragmentManager manager) {
+    public GroupCustomAdapter(String gName, String[] names, double[] weights, FragmentManager manager) {
+        groupName = gName;
         exerciseNames = names;
         exerciseWeights = weights;
         Manager = manager;
@@ -87,7 +98,7 @@ class GroupCustomAdapter extends RecyclerView.Adapter<GroupCustomAdapter.ViewHol
     @NonNull
     @Override
     public GroupCustomAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.schedule_list, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.group_list, parent, false);
         return new GroupCustomAdapter.ViewHolder(view, Manager);
     }
 
@@ -95,6 +106,7 @@ class GroupCustomAdapter extends RecyclerView.Adapter<GroupCustomAdapter.ViewHol
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onBindViewHolder(final GroupCustomAdapter.ViewHolder holder, int position) {
+        holder.groupName = groupName;
         holder.mName.setText(exerciseNames[position]);
         holder.mWeight.setText(String.valueOf(exerciseWeights[position]));
 
@@ -121,13 +133,14 @@ class GroupCustomAdapter extends RecyclerView.Adapter<GroupCustomAdapter.ViewHol
 
 
     //Helper class for adapter
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public final View mView;
         private TextView mName;
         private EditText mWeight;
+        private String groupName;
 
-        public ViewHolder(View view, FragmentManager manager) {
+        public ViewHolder(View view, final FragmentManager manager) {
             super(view);
             mView = view;
             mName = (TextView) view.findViewById(R.id.group_name);
@@ -136,12 +149,20 @@ class GroupCustomAdapter extends RecyclerView.Adapter<GroupCustomAdapter.ViewHol
                 @Override
                 public void onClick(View v) {
                     if (v.getId() == mName.getId()) {
-                        //TODO: Go to exercise details page
-                        Toast.makeText(v.getContext(), "CLICKED: " + mName.getText(), Toast.LENGTH_SHORT).show();
+                        Bundle mBundle = new Bundle();
+                        mBundle.putString("ExerciseName", mName.getText().toString());
+                        mBundle.putString("GroupName", groupName);
+
+                        Fragment fragment = new WorkoutExerciseFragment();
+                        fragment.setArguments(mBundle);
+                        FragmentTransaction fragmentTransaction = manager.beginTransaction();
+                        fragmentTransaction.add(R.id.group_frame, fragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
                     }
                 }
             };
-            //Button click goes to WorkoutGroupFragment
+            //Button click goes to WorkoutExerciseFragment
             mName.setOnClickListener(mListener);
         }
     }

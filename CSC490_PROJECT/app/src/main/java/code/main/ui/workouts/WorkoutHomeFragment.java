@@ -53,7 +53,7 @@ public class WorkoutHomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //Finds View and it's layout
-        View root = inflater.inflate(R.layout.activity_workouts, container, false);
+        View root = inflater.inflate(R.layout.fragment_workout_home, container, false);
 
         //dummy data initialization
         dummyDataInit();
@@ -75,14 +75,14 @@ public class WorkoutHomeFragment extends Fragment {
         Workouts.add(new WorkoutDataObject(true,workout_5, desc_5, container1));
         Workouts.add(new WorkoutDataObject(true,workout_6, desc_6, container1));
         Workouts.add(new WorkoutDataObject(true,workout_7, desc_7, container1));
-        //iso
-        Workouts.add(new WorkoutDataObject(false,workout_8, desc_8, container1));
+        /*Workouts.add(new WorkoutDataObject(false,workout_8, desc_8, container1));
         Workouts.add(new WorkoutDataObject(false,workout_9, desc_9, container1));
         Workouts.add(new WorkoutDataObject(false,workout_10, desc_10, container1));
         Workouts.add(new WorkoutDataObject(false,workout_11, desc_11, container1));
         Workouts.add(new WorkoutDataObject(false,workout_12, desc_12, container1));
         Workouts.add(new WorkoutDataObject(false,workout_13, desc_13, container1));
         Workouts.add(new WorkoutDataObject(false,workout_14, desc_14, container1));
+        */
 
 
         //Set adapter
