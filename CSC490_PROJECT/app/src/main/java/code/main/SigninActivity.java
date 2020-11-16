@@ -29,6 +29,7 @@ public class SigninActivity extends AppCompatActivity {
     private String personName;
     private String personEmail;
     private String personId;
+    private String personToken;
     private Uri personPhoto;
     protected static final String CLIENT_SERVER_ID = "730176124480-35nifq78ep4f6gqvjnsod05jfpfheoaa.apps.googleusercontent.com";
 
@@ -110,6 +111,9 @@ public class SigninActivity extends AppCompatActivity {
             personEmail = account.getEmail();
             personId = account.getId();
             personPhoto = account.getPhotoUrl();
+            personToken = account.getIdToken();
+
+            setToken(personToken);
 
             Intent i = new Intent(SigninActivity.this, SettingsActivity.class);
             Bundle bundle = new Bundle();

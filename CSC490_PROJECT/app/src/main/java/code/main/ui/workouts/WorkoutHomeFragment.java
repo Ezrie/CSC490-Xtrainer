@@ -75,6 +75,7 @@ public class WorkoutHomeFragment extends Fragment {
         Workouts.add(new WorkoutDataObject(true,workout_5, desc_5, container1));
         Workouts.add(new WorkoutDataObject(true,workout_6, desc_6, container1));
         Workouts.add(new WorkoutDataObject(true,workout_7, desc_7, container1));
+        //iso
         Workouts.add(new WorkoutDataObject(false,workout_8, desc_8, container1));
         Workouts.add(new WorkoutDataObject(false,workout_9, desc_9, container1));
         Workouts.add(new WorkoutDataObject(false,workout_10, desc_10, container1));

@@ -111,6 +111,7 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         // goes to sign in activity
+                        //TODO: USE SQL QUERIES TO DELETE THIS ACCOUNTS DATA
                         goSignInActivity();
                         //startActivity(new Intent(ProfileActivity.this, SigninActivity.class));
                         //finish();
@@ -124,7 +125,7 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         // ...
-                        //TO DO: USE SQL QUERIES TO DELETE THIS ACCOUNTS DATA
+                        //TODO: USE SQL QUERIES TO DELETE THIS ACCOUNTS DATA
                         goSignInActivity();
                     }
                 });
