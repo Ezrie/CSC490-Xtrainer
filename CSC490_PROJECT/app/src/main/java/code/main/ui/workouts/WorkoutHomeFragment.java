@@ -16,16 +16,20 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import code.main.R;
 import code.main.data.PushPullScheduleContainer;
 import code.main.data.WorkoutDataObject;
 
 public class WorkoutHomeFragment extends Fragment {
+    protected WorkoutView sharedView;
+
     //just constants for dummy data descriptions
     //push pull routine
     private String workout_1, workout_2, workout_3, workout_4, workout_5, workout_6, workout_7 = "";
@@ -47,7 +51,14 @@ public class WorkoutHomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Read from local file for any custom workouts here
+        sharedView = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(WorkoutView.class);
+        //TODO: get custom workouts and load
+        Bundle mBundle = this.getArguments();
+        if (!(mBundle == null)) {
+
+            String selected = mBundle.getString("selected");
+            sharedView.setSelectedWorkoutObject(selected);
+        }
     }
 
     @Override
@@ -189,8 +200,8 @@ public class WorkoutHomeFragment extends Fragment {
                 "extended. Then, slowly release your arms and return to the starting position in a controlled " +
                 "manner.";
     }
-
 }
+
 
 class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.ViewHolder> {
 
@@ -260,8 +271,17 @@ class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.ViewHolde
                 public void onClick(View v) {
                     //All touch events for workout list.xml
                     if (v.getId() == mButton.getId()) {
-                        Toast.makeText(v.getContext(), "SELECTED WORKOUT : " + mTitleView.getText(), Toast.LENGTH_SHORT).show();
-                        //TODO: Select button click changes user's selected workout (in Profile)
+                        Toast.makeText(v.getContext(), "SELECTED " + mTitleView.getText().toString().toUpperCase(), Toast.LENGTH_SHORT).show();
+
+                        Bundle mBundle = new Bundle();
+                        mBundle.putString("selected", mTitleView.getText().toString());
+
+                        Fragment fragment = new WorkoutHomeFragment();
+                        fragment.setArguments(mBundle);
+                        FragmentTransaction fragmentTransaction = manager.beginTransaction();
+                        fragmentTransaction.add(R.id.home_frame, fragment);
+                        fragmentTransaction.commit();
+
                     } else if (v.getId() == mTitleView.getId()) {
                         Bundle mBundle = new Bundle();
                         mBundle.putParcelable("WorkoutObject", mObject);

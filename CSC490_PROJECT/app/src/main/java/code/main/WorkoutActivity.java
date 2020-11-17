@@ -2,27 +2,27 @@ package code.main;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import code.main.data.SaveFile;
 import code.main.database.DatabaseAdapter;
 import code.main.database.DatabaseHelper;
 import code.main.ui.workouts.WorkoutView;
 
-public class WorkoutActivity extends AppCompatActivity {
+public class WorkoutActivity extends AppCompatActivity implements LifecycleOwner {
 
     //TODO: use onDestroy() or something so you don't have to clean the build after every run...
 
-    private WorkoutView viewModel;
+    public WorkoutView viewModel;
     private DatabaseAdapter adapter;
     private DatabaseHelper database;
 
@@ -31,6 +31,12 @@ public class WorkoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         viewModel = ViewModelProviders.of(this).get(WorkoutView.class);
+        viewModel.getSelectedWorkoutObject().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String selectedWorkout) {
+                SaveFile.updateObject(getApplicationContext(), selectedWorkout);
+            }
+        });
 
         setContentView(R.layout.workout_navigation_overlay);
         BottomNavigationView navView = findViewById(R.id.nav_view);

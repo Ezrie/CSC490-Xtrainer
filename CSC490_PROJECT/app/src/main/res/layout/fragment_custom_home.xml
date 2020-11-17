@@ -116,7 +116,7 @@
                     android:orientation="horizontal"
                     app:layoutManager="LinearLayoutManager"
                     tools:context=".ui.workouts.WorkoutDetailsFragment"
-                    tools:listitem="@layout/list_schedule" />
+                    tools:listitem="@layout/list_custom" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -151,7 +151,7 @@
                     android:orientation="horizontal"
                     app:layoutManager="LinearLayoutManager"
                     tools:context=".ui.workouts.WorkoutDetailsFragment"
-                    tools:listitem="@layout/list_schedule" />
+                    tools:listitem="@layout/list_custom" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -186,7 +186,7 @@
                     android:orientation="horizontal"
                     app:layoutManager="LinearLayoutManager"
                     tools:context=".ui.workouts.WorkoutDetailsFragment"
-                    tools:listitem="@layout/list_schedule" />
+                    tools:listitem="@layout/list_custom" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -221,7 +221,7 @@
                     android:orientation="horizontal"
                     app:layoutManager="LinearLayoutManager"
                     tools:context=".ui.workouts.WorkoutDetailsFragment"
-                    tools:listitem="@layout/list_schedule" />
+                    tools:listitem="@layout/list_custom" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -256,7 +256,7 @@
                     android:orientation="horizontal"
                     app:layoutManager="LinearLayoutManager"
                     tools:context=".ui.workouts.WorkoutDetailsFragment"
-                    tools:listitem="@layout/list_schedule" />
+                    tools:listitem="@layout/list_custom" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -291,7 +291,7 @@
                     android:orientation="horizontal"
                     app:layoutManager="LinearLayoutManager"
                     tools:context=".ui.workouts.WorkoutDetailsFragment"
-                    tools:listitem="@layout/list_schedule" />
+                    tools:listitem="@layout/list_custom" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -326,7 +326,7 @@
                     android:orientation="horizontal"
                     app:layoutManager="LinearLayoutManager"
                     tools:context=".ui.workouts.WorkoutDetailsFragment"
-                    tools:listitem="@layout/list_schedule" />
+                    tools:listitem="@layout/list_custom" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

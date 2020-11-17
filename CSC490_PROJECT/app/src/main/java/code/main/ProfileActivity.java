@@ -1,7 +1,13 @@
 package code.main;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
@@ -11,10 +17,10 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import code.main.data.SaveFile;
 import code.main.database.DatabaseAdapter;
 import code.main.database.DatabaseHelper;
 import code.main.ui.profile.ProfileView;
-import code.main.ui.workouts.WorkoutView;
 
 public class ProfileActivity extends AppCompatActivity {
     //TODO: use onDestroy() or something so you don't have to clean the build after every run...
@@ -26,6 +32,10 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //You can get the selected workout from the activity or the fragment
+        String selectedWorkout = SaveFile.readObject(getApplicationContext());
+        Log.e("VERBOSE", "SELECTED FROM ACTIVITY: " + selectedWorkout);
 
         viewModel = ViewModelProviders.of(this).get(ProfileView.class);
 
@@ -42,5 +52,13 @@ public class ProfileActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull String name, @NonNull Context context, @NonNull AttributeSet attrs) {
+
+
+        return super.onCreateView(name, context, attrs);
     }
 }
