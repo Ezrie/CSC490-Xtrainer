@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/mainrow"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="415dp"
+        android:layout_height="210dp"
+        app:cardBackgroundColor="#F3F7F7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/exr3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="6dp"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/day"
+                app:layout_constraintTop_toBottomOf="@+id/exr2" />
+
+            <TextView
+                android:id="@+id/exr4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="6dp"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/day"
+                app:layout_constraintTop_toBottomOf="@+id/exr3" />
+
+            <TextView
+                android:id="@+id/exr2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toTopOf="@+id/exr3"
+                app:layout_constraintStart_toEndOf="@+id/day"
+                app:layout_constraintTop_toBottomOf="@+id/exr1"
+                app:layout_constraintVertical_bias="0.6" />
+
+            <TextView
+                android:id="@+id/exr1"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="56dp"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/day"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/selectedWorkout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:text="TextView"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/day"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:text="TextView"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.373" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="83dp"
+                android:layout_height="38dp"
+                android:buttonTint="#4CAF50"
+
+                android:text="Done"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.982" />
+
+            <TextView
+                android:id="@+id/weight1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="56dp"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/exr1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/weight2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="6dp"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/exr2"
+                app:layout_constraintTop_toBottomOf="@+id/weight1" />
+
+            <TextView
+                android:id="@+id/weight3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="6dp"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/exr3"
+                app:layout_constraintTop_toBottomOf="@+id/weight2" />
+
+            <TextView
+                android:id="@+id/weight4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="6dp"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/exr4"
+                app:layout_constraintTop_toBottomOf="@+id/weight3" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
