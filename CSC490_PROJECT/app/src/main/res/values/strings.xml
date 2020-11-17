@@ -18,6 +18,8 @@
     <string name="weight_input_hint">Input weight amount</string>
     <string name="custom_name_hint">Workout Name</string>
     <string name="custom_description_hint">Workout Description</string>
+    <string name="workout_iso">Isolation Workout</string>
+    <string name="workout_pushpull">Push Pull Workout</string>
 
     <string name="short_sunday">Su</string>
     <string name="short_monday">M</string>

@@ -48,10 +48,10 @@ public class CustomHomeFragment extends Fragment {
             EditText Title = (EditText) root.findViewById(R.id.custom_workout_name);
             Title.setText(SelectedWorkout.getWorkoutTitle());
 
-            TextView Type = (TextView) root.findViewById(R.id.workout_details_type);
-            Type.setText(SelectedWorkout.getWorkoutType());
+            //TextView Type = (TextView) root.findViewById(R.id.custom_workout_type);
+            //Type.setText(SelectedWorkout.getWorkoutType());
 
-            TextView Description = (TextView) root.findViewById(R.id.workout_details_description);
+            TextView Description = (TextView) root.findViewById(R.id.custom_workout_description);
             Description.setText(SelectedWorkout.getWorkoutDescription());
             Description.setMovementMethod(new ScrollingMovementMethod());
 
