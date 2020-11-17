@@ -3,17 +3,14 @@ package code.main.ui.profile;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.solver.widgets.ConstraintAnchor;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import code.main.ProfileActivity;
 import code.main.R;
 
 public class adapterProfile extends RecyclerView.Adapter<adapterProfile.MyViewHolder>{
@@ -63,7 +60,7 @@ public class adapterProfile extends RecyclerView.Adapter<adapterProfile.MyViewHo
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             test1 = itemView.findViewById(R.id.textView3);
-            test2 = itemView.findViewById(R.id.textView4);
+            test2 = itemView.findViewById(R.id.exr1);
             mainrow = itemView.findViewById(R.id.mainrow);
         }
     }
