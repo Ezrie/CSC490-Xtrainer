@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -15,8 +16,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Objects;
+
 import code.main.R;
+import code.main.data.SaveFile;
 import code.main.data.WorkoutDataObject;
+import code.main.ui.custom.CustomHomeFragment;
 
 public class WorkoutDetailsFragment extends Fragment {
 
@@ -39,11 +44,11 @@ public class WorkoutDetailsFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_workout_details, container, false);
 
         Bundle mBundle = this.getArguments();
-        if(!this.getArguments().isEmpty()) {
+        if (this.getArguments() != null) {
 
             SelectedWorkout = mBundle.getParcelable("WorkoutObject");
 
-            TextView Title = (TextView) root.findViewById(R.id.workout_details_name);
+            final TextView Title = (TextView) root.findViewById(R.id.workout_details_name);
             Title.setText(SelectedWorkout.getWorkoutTitle());
 
             TextView Type = (TextView) root.findViewById(R.id.workout_details_type);
@@ -52,6 +57,36 @@ public class WorkoutDetailsFragment extends Fragment {
             TextView Description = (TextView) root.findViewById(R.id.workout_details_description);
             Description.setText(SelectedWorkout.getWorkoutDescription());
             Description.setMovementMethod(new ScrollingMovementMethod());
+
+            Button selectButton = (Button) root.findViewById(R.id.workout_select);
+            selectButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(), "SELECTED " + Title.getText().toString().toUpperCase(), Toast.LENGTH_SHORT).show();
+
+                    SaveFile.updateObject(v.getContext(), Title.getText().toString());
+
+                    Objects.requireNonNull(getFragmentManager()).popBackStack();
+                }
+            });
+
+            Button editButton = (Button) root.findViewById(R.id.workout_edit);
+            editButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    // Go to CustomHomeFragment and pass bundle with workout title
+                    Bundle mBundle = new Bundle();
+                    mBundle.putString("selected", Title.getText().toString());
+
+                    Fragment fragment = new CustomHomeFragment();
+                    fragment.setArguments(mBundle);
+                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                    fragmentTransaction.add(R.id.details_frame, fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                }
+            });
 
             //There will be 7 recyclerViews, one per day
             RecyclerView sundayView = (RecyclerView) root.findViewById(R.id.sunday_list);
@@ -138,7 +173,6 @@ class DetailsCustomAdapter extends RecyclerView.Adapter<DetailsCustomAdapter.Vie
                         fragment.setArguments(mBundle);
                         FragmentTransaction fragmentTransaction = manager.beginTransaction();
                         fragmentTransaction.add(R.id.details_frame, fragment);
-                        fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
                     }
                 }

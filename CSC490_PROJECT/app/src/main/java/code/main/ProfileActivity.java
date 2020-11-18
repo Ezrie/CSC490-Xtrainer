@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import code.main.data.SaveFile;
 import code.main.database.DatabaseAdapter;
 import code.main.database.DatabaseHelper;
+import code.main.ui.profile.AdapterProfile;
 import code.main.ui.profile.ProfileView;
-import code.main.ui.profile.adapterProfile;
 
 public class ProfileActivity extends AppCompatActivity {
     //TODO: use onDestroy() or something so you don't have to clean the build after every run...
@@ -23,8 +24,9 @@ public class ProfileActivity extends AppCompatActivity {
     private DatabaseAdapter adapter;
     private DatabaseHelper database;
 
+
     RecyclerView recyclerView;
-    String s1[], s2[];
+    String days[], selectedWorkout, ex1, ex2, ex3, ex4, w1, w2, w3, w4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +36,12 @@ public class ProfileActivity extends AppCompatActivity {
         //viewModel = ViewModelProviders.of(this).get(ProfileView.class);
 
         recyclerView = findViewById(R.id.rsv1);
-        s1 = getResources().getStringArray(R.array.test1);
-        s2 = getResources().getStringArray(R.array.test2);
+        days = getResources().getStringArray(R.array.days);
 
-        adapterProfile mapdter = new adapterProfile(this, s1, s2);
+        selectedWorkout = SaveFile.readObject(getApplicationContext());
+
+        AdapterProfile mapdter = new AdapterProfile(this, days, selectedWorkout, "Exercise1", "Exercise2", "Exercise3", "Exercise4",
+                "22.1", "443", "21", "44");
         recyclerView.setAdapter(mapdter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

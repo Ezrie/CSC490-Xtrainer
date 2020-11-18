@@ -28,6 +28,7 @@
                 android:paddingVertical="2pt">
 
                 <ImageButton
+                    android:id="@+id/custom_delete_button"
                     android:layout_width="30pt"
                     android:clickable="true"
                     android:layout_height="30pt"
@@ -46,6 +47,7 @@
                     android:textSize="10pt" />
 
                 <ImageButton
+                    android:id="@+id/custom_save_button"
                     android:layout_width="30pt"
                     android:clickable="true"
                     android:layout_height="30pt"
@@ -58,19 +60,28 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="70pt"
-            android:background="#EEEEEE">
+            android:background="#EEEEEE"
+            android:orientation="vertical">
+
+            <ToggleButton
+                android:id="@+id/type_toggle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOff="@string/workout_iso"
+                android:textOn="@string/workout_pushpull"
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/custom_workout_description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:inputType="textMultiLine"
                 android:clickable="true"
                 android:layout_gravity="center"
                 android:layout_margin="5pt"
                 android:background="#FFFFFF"
                 android:gravity="start"
                 android:hint="@string/custom_description_hint"
-                android:inputType="text"
                 android:padding="3pt"
                 android:scrollbars="vertical"
                 android:scrollbarAlwaysDrawVerticalTrack="true"
@@ -87,7 +98,6 @@
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/sunday_item"
-                android:clickable="true"
                 android:layout_width="match_parent"
                 android:layout_height="25pt"
                 android:layout_marginHorizontal="5pt"
@@ -113,6 +123,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#FFFFFF"
+                    android:clickable="true"
+                    android:descendantFocusability="blocksDescendants"
                     android:orientation="horizontal"
                     app:layoutManager="LinearLayoutManager"
                     tools:context=".ui.workouts.WorkoutDetailsFragment"

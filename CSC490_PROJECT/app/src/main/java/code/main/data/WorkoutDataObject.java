@@ -12,6 +12,13 @@ public class WorkoutDataObject implements Parcelable {
     private String WorkoutDescription;
     private Object[] Schedule;
 
+    //Empty constructor for CustomHomeFragment
+    public WorkoutDataObject() {
+        isPushPull = true;
+        WorkoutTitle = "My Custom Workout";
+        WorkoutDescription = "Describe your workout...";
+    }
+
     public WorkoutDataObject(boolean isPushPull, String workoutTitle, String workoutDescription, Object[] schedule) {
         this.isPushPull = isPushPull;
         WorkoutTitle = workoutTitle;
@@ -24,17 +31,20 @@ public class WorkoutDataObject implements Parcelable {
     }
 
     public String[] getScheduleByDay(String Day) {
-        ArrayList<String> schedule = new ArrayList<String>();
-        if(isPushPull) {
-            for(int i = 0; i < Schedule.length; i++) {
-                for(int j = 0; j < ((PushPullScheduleContainer) Schedule[i]).getSelectedDays().length; j++) {
-                    if (((PushPullScheduleContainer)Schedule[i]).getSelectedDays()[j].equals(PushPullScheduleContainer.Days.valueOf(Day))) {
-                        schedule.add(((PushPullScheduleContainer)Schedule[i]).getDayType().toString());
-                        }
+        ArrayList<String> schedule = new ArrayList<>();
+        if (Schedule == null) {
+            return null;
+        }
+        if (isPushPull) {
+            for (int i = 0; i < Schedule.length; i++) {
+                for (int j = 0; j < ((PushPullScheduleContainer) Schedule[i]).getSelectedDays().length; j++) {
+                    if (((PushPullScheduleContainer) Schedule[i]).getSelectedDays()[j].equals(PushPullScheduleContainer.Days.valueOf(Day))) {
+                        schedule.add(((PushPullScheduleContainer) Schedule[i]).getDayType().toString());
+                    }
                 }
             }
         } else {
-            for(int i = 0; i < Schedule.length; i++) {
+            for (int i = 0; i < Schedule.length; i++) {
                 for(int j = 0; j < ((IsolationScheduleContainer)Schedule[i]).getSelectedDays().length; j++) {
                     if (((IsolationScheduleContainer)Schedule[i]).getSelectedDays()[j].equals(IsolationScheduleContainer.Days.valueOf(Day))) {
                         schedule.add(((IsolationScheduleContainer)Schedule[i]).getMuscleGroup().getMuscleGroupName());
