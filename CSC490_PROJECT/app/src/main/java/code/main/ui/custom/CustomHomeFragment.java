@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.Objects;
 
 import code.main.R;
+import code.main.data.DummyWorkoutData;
 import code.main.data.PushPullScheduleContainer;
 import code.main.data.WorkoutDataObject;
 import code.main.ui.workouts.WorkoutDetailsFragment;
@@ -82,7 +83,7 @@ public class CustomHomeFragment extends Fragment {
             //i.e. if it's called from the workout home page
         } else {
             //New workout object and show toggle button for workout type
-            SelectedWorkout = new WorkoutDataObject();
+            SelectedWorkout = DummyWorkoutData.dummy1;
 
             ToggleButton type = root.findViewById(R.id.type_toggle);
             type.setVisibility(View.VISIBLE);
@@ -179,7 +180,7 @@ public class CustomHomeFragment extends Fragment {
 
         final int day = 0;
 
-        //There will be 7 recyclerViews, one per day
+        //There will be 7 recyclerViews, one per day.
         RecyclerView sundayView = (RecyclerView) root.findViewById(R.id.sunday_list);
         sundayView.setAdapter(new CustomHomeCustomAdapter(SelectedWorkout.getScheduleByDay("SUNDAY"), this.getFragmentManager()));
 
@@ -207,19 +208,20 @@ public class CustomHomeFragment extends Fragment {
                 int day;
                 //Switch case for 7 possible days
                 switch (v.getId()) {
-                    case R.id.sunday_list:
+                    case R.id.sunday_item:
                         day = 0;
-                    case R.id.monday_list:
+
+                    case R.id.monday_item:
                         day = 1;
-                    case R.id.tuesday_list:
+                    case R.id.tuesday_item:
                         day = 2;
-                    case R.id.wednesday_list:
+                    case R.id.wednesday_item:
                         day = 3;
-                    case R.id.thursday_list:
+                    case R.id.thursday_item:
                         day = 4;
-                    case R.id.friday_list:
+                    case R.id.friday_item:
                         day = 5;
-                    case R.id.saturday_list:
+                    case R.id.saturday_item:
                         day = 6;
                     default:
                         day = -1;
@@ -239,13 +241,13 @@ public class CustomHomeFragment extends Fragment {
             }
         };
 
-        sundayView.setOnClickListener(listener);
-        mondayView.setOnClickListener(listener);
-        tuesdayView.setOnClickListener(listener);
-        wednesdayView.setOnClickListener(listener);
-        thursdayView.setOnClickListener(listener);
-        fridayView.setOnClickListener(listener);
-        saturdayView.setOnClickListener(listener);
+        root.findViewById(R.id.sunday_item).setOnClickListener(listener);
+        root.findViewById(R.id.monday_item).setOnClickListener(listener);
+        root.findViewById(R.id.tuesday_item).setOnClickListener(listener);
+        root.findViewById(R.id.wednesday_item).setOnClickListener(listener);
+        root.findViewById(R.id.thursday_item).setOnClickListener(listener);
+        root.findViewById(R.id.friday_item).setOnClickListener(listener);
+        root.findViewById(R.id.saturday_item).setOnClickListener(listener);
 
 
         return root;
