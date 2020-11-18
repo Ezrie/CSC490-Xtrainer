@@ -18,8 +18,7 @@
         tools:layout="@layout/fragment_workout_home">
         <action
             android:id="@+id/action_navigation_workouts_to_workoutDetailsFragment"
-            app:destination="@id/workoutDetailsFragment"
-            app:popUpTo="@id/navigation_workouts"/>
+            app:destination="@id/workoutDetailsFragment" />
     </fragment>
 
     <activity
@@ -30,23 +29,44 @@
     <fragment
         android:id="@+id/workoutDetailsFragment"
         android:name="code.main.ui.workouts.WorkoutDetailsFragment"
-        android:label="WorkoutDetailsFragment" >
+        android:label="WorkoutDetailsFragment">
         <action
             android:id="@+id/action_workoutDetailsFragment_to_workoutGroupFragment"
-            app:destination="@id/workoutGroupFragment"
-            app:popUpTo="@id/workoutDetailsFragment"/>
+            app:destination="@id/workoutGroupFragment" />
+        <action
+            android:id="@+id/action_workoutDetailsFragment_to_customHomeFragment"
+            app:destination="@id/customHomeFragment"
+            app:popUpTo="@id/navigation_workouts" />
+        <action
+            android:id="@+id/action_workoutDetailsFragment_to_navigation_workouts"
+            app:destination="@id/navigation_workouts" />
     </fragment>
     <fragment
         android:id="@+id/workoutGroupFragment"
         android:name="code.main.ui.workouts.WorkoutGroupFragment"
-        android:label="WorkoutGroupFragment" >
+        android:label="WorkoutGroupFragment">
         <action
             android:id="@+id/action_workoutGroupFragment_to_workoutExerciseFragment"
-            app:destination="@id/workoutExerciseFragment"
-            app:popUpTo="@id/workoutDetailsFragment"/>
+            app:destination="@id/workoutExerciseFragment" />
     </fragment>
     <fragment
         android:id="@+id/workoutExerciseFragment"
         android:name="code.main.ui.workouts.WorkoutExerciseFragment"
         android:label="WorkoutExerciseFragment" />
+    <fragment
+        android:id="@+id/customHomeFragment"
+        android:name="code.main.ui.custom.CustomHomeFragment"
+        android:label="CustomHomeFragment">
+        <action
+            android:id="@+id/action_customHomeFragment_to_customSelectFragment"
+            app:destination="@id/customSelectFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/customSelectFragment"
+        android:name="code.main.ui.custom.CustomSelectFragment"
+        android:label="CustomSelectFragment">
+        <action
+            android:id="@+id/action_customSelectFragment_to_customHomeFragment"
+            app:destination="@id/customHomeFragment" />
+    </fragment>
 </navigation>
