@@ -60,7 +60,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="70pt"
-            android:background="#EEEEEE">
+            android:background="#EEEEEE"
+            android:orientation="vertical">
+
+            <ToggleButton
+                android:id="@+id/type_toggle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOff="@string/workout_iso"
+                android:textOn="@string/workout_pushpull"
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/custom_workout_description"
@@ -89,7 +98,6 @@
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/sunday_item"
-                android:clickable="true"
                 android:layout_width="match_parent"
                 android:layout_height="25pt"
                 android:layout_marginHorizontal="5pt"
@@ -98,7 +106,6 @@
 
                 <TextView
                     android:layout_width="25pt"
-                    android:clickable="false"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="1pt"
                     android:background="#FFFFFF"
@@ -116,6 +123,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#FFFFFF"
+                    android:clickable="true"
+                    android:descendantFocusability="blocksDescendants"
                     android:orientation="horizontal"
                     app:layoutManager="LinearLayoutManager"
                     tools:context=".ui.workouts.WorkoutDetailsFragment"

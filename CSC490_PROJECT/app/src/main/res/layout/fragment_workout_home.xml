@@ -20,16 +20,19 @@
             android:layout_gravity="center_horizontal"
             android:clickable="true"
             android:orientation="horizontal"
+            android:id="@+id/create_custom_workout"
             android:padding="1pt">
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:clickable="false"
                 android:src="@drawable/ic_baseline_add_circle_outline_24" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:clickable="false"
                 android:text="@string/button_create_workout" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>

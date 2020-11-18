@@ -57,10 +57,10 @@ public class WorkoutGroupFragment extends Fragment {
             exerciseNames[3] = "EXERCISE 4";
 
             exerciseWeights = new double[exerciseNames.length];
-            exerciseWeights[0] = 2;
+            exerciseWeights[0] = 2.0;
             exerciseWeights[1] = 8.3;
-            exerciseWeights[2] = 2.001;
-            exerciseWeights[3] = .0002;
+            exerciseWeights[2] = 2.01;
+            exerciseWeights[3] = .02;
 
             TextView Title = (TextView) root.findViewById(R.id.group_header);
             Title.setText((groupName + " Exercises"));

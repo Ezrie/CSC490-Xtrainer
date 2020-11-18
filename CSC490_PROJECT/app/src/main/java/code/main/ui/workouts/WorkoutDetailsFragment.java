@@ -44,7 +44,7 @@ public class WorkoutDetailsFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_workout_details, container, false);
 
         Bundle mBundle = this.getArguments();
-        if(!this.getArguments().isEmpty()) {
+        if (this.getArguments() != null) {
 
             SelectedWorkout = mBundle.getParcelable("WorkoutObject");
 
