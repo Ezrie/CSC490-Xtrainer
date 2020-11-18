@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -159,6 +160,7 @@ public class CustomHomeFragment extends Fragment {
                     //TODO: save to db
 
                     //Go to this workout's details
+                    Log.e("VERBOSE", SelectedWorkout.getWorkoutDescription().toString());
                     SelectedWorkout.setWorkoutDescription(v.findViewById(R.id.custom_workout_description).toString());
                     SelectedWorkout.setWorkoutTitle(v.findViewById(R.id.custom_select_group_name).toString());
                     sharedView.setWorkout(SelectedWorkout);
