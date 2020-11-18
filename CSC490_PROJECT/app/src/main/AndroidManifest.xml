@@ -15,12 +15,8 @@
 
         <activity
             android:name=".SignInActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".ProfileActivity"
             android:screenOrientation="portrait" />
@@ -28,7 +24,12 @@
         <activity
             android:name=".ui.profile.ProfileActivityDetails"
             android:label="Details"
-            android:parentActivityName=".ProfileActivity"></activity>
+            android:parentActivityName=".ProfileActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
     </application>
 
