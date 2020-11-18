@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,11 +20,13 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import code.main.database.DatabaseHelper;
+
 public class SignInActivity extends AppCompatActivity {
 
-    private static final String TAG ="";
+    private static final String TAG = "";
     SignInButton signInButton;
-    private static final int RC_SIGN_IN =  1;
+    private static final int RC_SIGN_IN = 1;
     private String personName;
     private String personEmail;
     private String personId;
@@ -31,6 +34,12 @@ public class SignInActivity extends AppCompatActivity {
     protected static final String CLIENT_SERVER_ID = "730176124480-35nifq78ep4f6gqvjnsod05jfpfheoaa.apps.googleusercontent.com";
 
     public SignInActivity() {
+    }
+
+    public SignInActivity(String personId, String personEmail, String personName) {
+        this.personName = personName;
+        this.personId = personId;
+        this.personEmail = personEmail;
     }
 
     @Override
@@ -95,13 +104,19 @@ public class SignInActivity extends AppCompatActivity {
         // Signed in successfully, show authenticated UI.
 
         if (account != null) {
-            personName = account.getDisplayName();
 
+            personName = account.getDisplayName();
             personEmail = account.getEmail();
             personId = account.getId();
             personPhoto = account.getPhotoUrl();
+            UserModel user = new UserModel(personId, personName, personEmail);
 
-            Intent i = new Intent(SignInActivity.this, SignInActivity.class);
+            DatabaseHelper databaseHelper = new DatabaseHelper(SignInActivity.this);
+            boolean success = databaseHelper.addUser(user);
+            Toast.makeText(SignInActivity.this, "Success = " + success, Toast.LENGTH_SHORT).show();
+
+
+            Intent i = new Intent(SignInActivity.this, WorkoutActivity.class);
             Bundle bundle = new Bundle();
             bundle.putString("PERSON_NAME", personName);
             bundle.putString("PERSON_EMAIL", personEmail);
@@ -109,18 +124,46 @@ public class SignInActivity extends AppCompatActivity {
             bundle.putString("PERSON_ID", personId);
             i.putExtras(bundle);
             i.putExtra("image_URI", personPhoto);
-
+            Toast.makeText(SignInActivity.this, "Signed in!", Toast.LENGTH_LONG).show();
             startActivity(i);
             finish();
         }
 
     }
 
-    public String getToken(){
+    // ------------------------------------ Getters --------------------------------------------
+    public String getToken() {
         return this.personId;
     }
 
-    public void setToken(String token){
+    public void setToken(String token) {
         this.personId = token;
+    }
+
+    public String getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(String personId) {
+        this.personId = personId;
+    }
+
+
+    //------------------------------------ Setters --------------------------------------
+
+    public String getPersonName() {
+        return personName;
+    }
+
+    public void setPersonName(String personName) {
+        this.personName = personName;
+    }
+
+    public String getPersonEmail() {
+        return personEmail;
+    }
+
+    public void setPersonEmail(String personEmail) {
+        this.personEmail = personEmail;
     }
 }

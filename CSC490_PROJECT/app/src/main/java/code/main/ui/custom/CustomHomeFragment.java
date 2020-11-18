@@ -23,7 +23,7 @@ import code.main.ui.workouts.WorkoutGroupFragment;
 public class CustomHomeFragment extends Fragment {
 
     //Arrays that hold the title, descriptions, and routine of the workouts.
-    protected WorkoutDataObject SelectedWorkout;
+    protected static WorkoutDataObject SelectedWorkout;
 
     //Empty constructor for fragment manager
     public CustomHomeFragment() {
@@ -57,25 +57,25 @@ public class CustomHomeFragment extends Fragment {
 
             //There will be 7 recyclerViews, one per day
             RecyclerView sundayView = (RecyclerView) root.findViewById(R.id.sunday_list);
-            sundayView.setAdapter(new CustomHomeCustomAdapter(SelectedWorkout.getScheduleByDay("SUNDAY"), SelectedWorkout.isPushPull(), this.getFragmentManager()));
+            sundayView.setAdapter(new CustomHomeCustomAdapter(SelectedWorkout.getScheduleByDay("SUNDAY"), this.getFragmentManager()));
 
             RecyclerView mondayView = (RecyclerView) root.findViewById(R.id.monday_list);
-            mondayView.setAdapter(new CustomHomeCustomAdapter(SelectedWorkout.getScheduleByDay("MONDAY"), SelectedWorkout.isPushPull(), this.getFragmentManager()));
+            mondayView.setAdapter(new CustomHomeCustomAdapter(SelectedWorkout.getScheduleByDay("MONDAY"), this.getFragmentManager()));
 
             RecyclerView tuesdayView = (RecyclerView) root.findViewById(R.id.tuesday_list);
-            tuesdayView.setAdapter(new CustomHomeCustomAdapter(SelectedWorkout.getScheduleByDay("TUESDAY"), SelectedWorkout.isPushPull(), this.getFragmentManager()));
+            tuesdayView.setAdapter(new CustomHomeCustomAdapter(SelectedWorkout.getScheduleByDay("TUESDAY"), this.getFragmentManager()));
 
             RecyclerView wednesdayView = (RecyclerView) root.findViewById(R.id.wednesday_list);
-            wednesdayView.setAdapter(new CustomHomeCustomAdapter(SelectedWorkout.getScheduleByDay("WEDNESDAY"), SelectedWorkout.isPushPull(), this.getFragmentManager()));
+            wednesdayView.setAdapter(new CustomHomeCustomAdapter(SelectedWorkout.getScheduleByDay("WEDNESDAY"), this.getFragmentManager()));
 
             RecyclerView thursdayView = (RecyclerView) root.findViewById(R.id.thursday_list);
-            thursdayView.setAdapter(new CustomHomeCustomAdapter(SelectedWorkout.getScheduleByDay("THURSDAY"), SelectedWorkout.isPushPull(), this.getFragmentManager()));
+            thursdayView.setAdapter(new CustomHomeCustomAdapter(SelectedWorkout.getScheduleByDay("THURSDAY"), this.getFragmentManager()));
 
             RecyclerView fridayView = (RecyclerView) root.findViewById(R.id.friday_list);
-            fridayView.setAdapter(new CustomHomeCustomAdapter(SelectedWorkout.getScheduleByDay("FRIDAY"), SelectedWorkout.isPushPull(), this.getFragmentManager()));
+            fridayView.setAdapter(new CustomHomeCustomAdapter(SelectedWorkout.getScheduleByDay("FRIDAY"), this.getFragmentManager()));
 
             RecyclerView saturdayView = (RecyclerView) root.findViewById(R.id.saturday_list);
-            saturdayView.setAdapter(new CustomHomeCustomAdapter(SelectedWorkout.getScheduleByDay("SATURDAY"), SelectedWorkout.isPushPull(), this.getFragmentManager()));
+            saturdayView.setAdapter(new CustomHomeCustomAdapter(SelectedWorkout.getScheduleByDay("SATURDAY"), this.getFragmentManager()));
         }
 
         return root;
@@ -85,12 +85,10 @@ public class CustomHomeFragment extends Fragment {
 class CustomHomeCustomAdapter extends RecyclerView.Adapter<CustomHomeCustomAdapter.ViewHolder> {
 
     private String[] Schedule;
-    private Boolean isPushPull;
     private FragmentManager Manager;
 
-    public CustomHomeCustomAdapter(String[] schedule, Boolean mIsPushPull, FragmentManager manager) {
+    public CustomHomeCustomAdapter(String[] schedule, FragmentManager manager) {
         Schedule = schedule;
-        isPushPull = mIsPushPull;
         Manager = manager;
     }
 
@@ -107,7 +105,6 @@ class CustomHomeCustomAdapter extends RecyclerView.Adapter<CustomHomeCustomAdapt
     public void onBindViewHolder(final CustomHomeCustomAdapter.ViewHolder holder, int position) {
         holder.mButton.setText(Schedule[position]);
         holder.mGroupName = Schedule[position];
-        holder.mIsPushPull = isPushPull;
     }
 
     @Override
@@ -122,7 +119,7 @@ class CustomHomeCustomAdapter extends RecyclerView.Adapter<CustomHomeCustomAdapt
         public final View mView;
         private final Button mButton;
         private String mGroupName;
-        private Boolean mIsPushPull;
+        private WorkoutDataObject mObject = CustomHomeFragment.SelectedWorkout;
 
         public ViewHolder(View view, final FragmentManager manager) {
             super(view);
@@ -134,7 +131,7 @@ class CustomHomeCustomAdapter extends RecyclerView.Adapter<CustomHomeCustomAdapt
                     if (v.getId() == mButton.getId()) {
                         Bundle mBundle = new Bundle();
                         mBundle.putString("GroupName", mGroupName);
-                        mBundle.putBoolean("IsPushPull", mIsPushPull);
+                        mBundle.putParcelable("WorkoutObject", mObject);
 
                         Fragment fragment = new WorkoutGroupFragment();
                         fragment.setArguments(mBundle);

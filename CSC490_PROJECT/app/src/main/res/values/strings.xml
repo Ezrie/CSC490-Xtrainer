@@ -1,4 +1,24 @@
 <resources>
+    <string-array name="test1">
+        <item>Day 1</item>
+        <item>Day 2</item>
+        <item>Day 3</item>
+        <item>Day 4</item>
+        <item>Day 5</item>
+        <item>Day 6</item>
+        <item>Day 7</item>
+    </string-array>
+
+    <string-array name="test2">
+        <item>w1</item>
+        <item>w2</item>
+        <item>w3</item>
+        <item>w4</item>
+        <item>w5</item>
+        <item>w6</item>
+        <item>w7</item>
+    </string-array>
+
     <string name="app_name">X-trainer</string>
     <string name="title_profile">Profile</string>
     <string name="title_workouts">Workouts</string>
